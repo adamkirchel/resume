@@ -10,7 +10,7 @@ import json
 import pickle
 import os
 
-os.chdir(r'C:\Users\adsk1\Documents\Coding portfolio\resume_website\main\python\chatbot')
+#os.chdir(r'C:\Users\adsk1\Documents\Coding portfolio\resume_website\main\python\chatbot')
 
 with open('intents.json') as file:
 	data = json.load(file)
