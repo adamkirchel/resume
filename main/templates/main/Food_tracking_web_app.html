@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+{% load static %}
+
+<!-- Meta -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<!-- Title -->
+<title>Financial Analysis Web Application</title>
+
+<!-- Favicons -->
+<link rel="shortcut icon" href="assets/img/favicon.png">
+<link rel="apple-touch-icon" href="assets/img/favicon_60x60.png">
+<link rel="apple-touch-icon" sizes="76x76" href="assets/img/favicon_76x76.png">
+<link rel="apple-touch-icon" sizes="120x120" href="assets/img/favicon_120x120.png">
+<link rel="apple-touch-icon" sizes="152x152" href="assets/img/favicon_152x152.png">
+
+<!-- Google Web Fonts -->
+<link href="https://fonts.googleapis.com/css?family=Lora:400,400i%7CPoppins:300,400,500,600" rel="stylesheet">
+
+<!-- CSS Styles -->
+<link rel="stylesheet" href= "{% static 'main/css/styles.css' %}" />
+
+<!-- CSS Theme -->
+<link id="theme" rel="stylesheet" href="{% static 'main/css/themes/theme-serif-red.css' %}" />
+
+</head>
+
+<body>
+
+<!-- Loader -->
+<div id="page-loader">
+    <svg class="loader" width="32px" height="32px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg"><circle class="circle" fill="none" stroke-width="5" stroke-linecap="round" cx="32" cy="32" r="32"></circle></svg>
+</div>
+<!-- Loader / End -->
+
+<!-- Header -->
+<header id="header" class="header-vertical collapsed dark">
+
+    <!-- Photo -->
+    <a href="kirchel_adam_portfolio.html" class="photo">
+        <img src="assets/img/photos/accountant_avatar.jpg" alt="">
+    </a>
+
+    <!-- Navigation -->
+    <nav id="nav-menu">
+        <ul class="nav nav-vertical">
+            <li><a href="/#start"><span>Start</span></a></li>
+            <li><a href="/#resume"><span>Resume</span></a></li>
+            <li><a href="/#portfolio"><span>Portfolio</span></a></li>
+            <li><a href="/#contact"><span>Contact</span></a></li>
+        </ul>
+        <span class="selector"></span>
+    </nav>
+
+    <!-- Header Toggle -->
+    <a href="#" id="header-toggle" class="nav-toggle"><span><span></span></span></a>
+
+</header>
+<!-- Header / End -->
+
+<!-- Content -->
+<div id="content" class="bg-light">
+
+    <!-- Post / Item -->
+    <article class="post single">
+        <nav class="post-nav">
+            <ul class="nav-icons">
+                <li><a href="/website_chatbot/"><img style="width:20px;" src="{% static 'main/img/website_images/left.svg' %}"></a></li>
+                <li><a href="/">Back to list</a></li>
+                <li><a href="/financial_GUI_package/"><img style="width:20px;" src="{% static 'main/img/website_images/right.svg' %}"></a></li>
+            </ul>
+        </nav>
+        <div class="post-image"><img src={% static 'main/img/website_images/food_tracker.jpg' %} alt=""></div>
+        <div class="post-content">
+            <ul class="post-meta">
+                <li>12 June, 2020</li>
+            </ul>
+            <h1><a href="#">Food Tracking Website Application</a></h1>
+            <p>
+				<strong>This website application allows the user to:</strong>
+				<ul>
+					<li>Log the contents of their kitchen in a database that can be viewed.</li>
+					<li>Browse recipes from the Food Network that contains their ingredients.</li>
+					<li>Browse other recipes that are grouped by cuisine in the ‘kitchen’ feature.</li>
+					<li>View the ingredients list and method for each individual recipe.</li>
+					<li>Create a timetable for meals in the coming month.</li>
+					<li>Automatically create a shopping list based on what items they have logged onto the database and what they need to create their scheduled meals.</li>
+				</ul>
+				
+				<strong>To make the website, I used:</strong>
+				<br><br>
+				<ul>
+					<li>BeautifulSoup and Pandas to parse data from the Food Network.</li>
+					<li>Django to build the backend of the website.</li>
+					<li>HTML and CSS to build the front end.</li>
+					<li>JavaScript to build the functionality of elements such as carousels and the navigation bar.</li>
+					<li>SQLite database to store user data and the recipes.</li>
+					<li>Natural Language Processing toolbox to create a recipe search tool.</li>
+				</ul>
+			</p>
+			
+			<h3>Introduction</h3>
+			
+			Modern cooking can be boring sometimes, with recipes being used again and again. I decided to create a website application to bring some creativity back into the kitchen whilst making the whole process a lot more stress-free. This application would be able to advise users on what recipes they could make based on what ingredients they had. It also would allow users to schedule meals for the coming month and automatically produce a shopping list based on these meals.
+			
+			<br><br>
+			
+			<h3>Webscraping with BeautifulSoup</h3>
+			
+			I chose the ‘Food Network’ website as a good starting point to build a database of recipes for the user. I decided to parse all recipes that could be accessed from the main menu, which was around 500. I did this by writing a script using BeautifulSoup that was able to create a url tree from the main menu and obtain a list of urls for all recipes. For each URL I extracted the title, ingredients, method, image, and other details, and uploaded this data to the database.
+			
+			<br><br>
+			
+			<h3>Logging and processing of ingredients</h3>
+			
+			A feature of the website allows the user to add items to the database using a form. They can log the item, the amount, its price, and its category. These are all displayed in a table, with tabs able to display the different categories.
+			
+			<br><br>
+			
+			<figure class = "centre-caption">
+				<img  src="{% static 'main/img/website_images/food_tracker/ingredient_log.png' %}" style="width:70%; display: block; margin:auto;">
+				<figcaption style="width:100%; margin:auto; display: block; text-align: center;">Fig.1 - Logging of ingredients </figcaption>
+			</figure>
+			
+			<br><br>
+			
+			This list of ingredients is put through a natural language algorithm, which stems the words and compares them against the list of ingredients for each recipe stored in the database. The recipes are then ordered by how many words they share with the ingredients list. The top recipes from this list are then displayed in a carousel at the bottom of the webpage. This carousel was created from scratch using JavaScript. When clicked on, the images link you to the recipe page that displays the ingredients and method.
+			
+			<br><br>
+			
+			<figure class = "centre-caption">
+				<img  src="{% static 'main/img/website_images/food_tracker/recipe_carousel.png' %}" style="width:70%; display: block; margin:auto;">
+				<figcaption style="width:100%; margin:auto; display: block; text-align: center;">Fig.2 - Carousel of relevant recipes </figcaption>
+			</figure>
+			
+			<br><br>
+			
+			<h3>Meal Planning</h3>
+			
+			The individual recipe pages allow you to schedule a day for you to prepare the meal. This form is submitted and saved on the database, where it is displayed in the calendar under ‘meal plan’. The ingredients from the list of these meals are compared against the ingredients you have logged, and a shopping list is created that excludes these items.
+            
+			<br><br>
+			
+			<figure class = "centre-caption">
+				<img  src="{% static 'main/img/website_images/food_tracker/recipe_page.png' %}" style="width:70%; display: block; margin:auto;">
+				<figcaption style="width:100%; margin:auto; display: block; text-align: center;">Fig.3 - Recipe page </figcaption>
+			</figure>
+			
+			<br><br>
+			
+			<figure class = "centre-caption">
+				<img  src="{% static 'main/img/website_images/food_tracker/meal_log.png' %}" style="width:70%; display: block; margin:auto;">
+				<figcaption style="width:100%; margin:auto; display: block; text-align: center;">Fig.4 - Calendar for scheduling meals </figcaption>
+			</figure>
+			
+			<br><br>
+			
+			<h3>Suggestions</h3>
+			
+			To improve on this project:
+			
+			<ul>
+				<li>Improve the styling of the website</li>
+				<li>Improve the responsiveness of the website, including the carousels when the webpage is decreased in size.</li>
+				<li>Be able to log the amounts of ingredients for recipes so the shopping list can tell you how much you need to buy.</li>
+				<li>Be able to buy ingredients from supermarket.</li>
+			</ul>
+
+        </div>
+		   
+    </article>
+	
+	<a href="{% static 'main/sample_code/food_tracking_app.zip' %}" class="btn btn-primary btn-lg" style="top: 50%;left: 40%;">Download Code</a>
+
+</div>
+<!-- Content / End -->
+
+<!-- Mobile Nav Toggle -->
+<a href="#" id="vertical-nav-toggle" class="nav-toggle" data-toggle="mobile-nav"><span><span></span></span></a>
+
+{% include "main/includes/chatbot.html" %}
+
+<!-- Ajax Modal -->
+<div id="ajax-modal"></div>
+<!-- Ajax Close -->
+<a href="#" class="ajax-close" data-dismiss="ajax-modal"><i class="ti-close"></i></a>
+<!-- Ajax Loader -->
+<svg id="ajax-loader" class="loader" width="32px" height="32px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg"><circle class="circle" fill="none" stroke-width="5" stroke-linecap="round" cx="32" cy="32" r="32"></circle></svg>
+
+<!-- JS Libraries -->
+<script src="{% static 'main/js/jquery-1.12.4.min.js' %}"></script>
+
+<!-- JS Plugins -->
+<script src="{% static 'main/js/plugins.js' %}"></script>
+
+<!-- JS Core -->
+<script src="{% static 'main/js/core.js' %}"></script>
+
+<!-- JS Google Map -->
+<script src="http://maps.google.com/maps/api/js"></script>
+
+</body>
+
+</html>
+

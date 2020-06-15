@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+{% load static %}
+
+<!-- Meta -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<!-- Title -->
+<title>Financial Analysis Web Application</title>
+
+<!-- Favicons -->
+<link rel="shortcut icon" href="assets/img/favicon.png">
+<link rel="apple-touch-icon" href="assets/img/favicon_60x60.png">
+<link rel="apple-touch-icon" sizes="76x76" href="assets/img/favicon_76x76.png">
+<link rel="apple-touch-icon" sizes="120x120" href="assets/img/favicon_120x120.png">
+<link rel="apple-touch-icon" sizes="152x152" href="assets/img/favicon_152x152.png">
+
+<!-- Google Web Fonts -->
+<link href="https://fonts.googleapis.com/css?family=Lora:400,400i%7CPoppins:300,400,500,600" rel="stylesheet">
+
+<!-- CSS Styles -->
+<link rel="stylesheet" href= "{% static 'main/css/styles.css' %}" />
+
+<!-- CSS Theme -->
+<link id="theme" rel="stylesheet" href="{% static 'main/css/themes/theme-serif-red.css' %}" />
+
+</head>
+
+<body>
+
+<!-- Loader -->
+<div id="page-loader">
+    <svg class="loader" width="32px" height="32px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg"><circle class="circle" fill="none" stroke-width="5" stroke-linecap="round" cx="32" cy="32" r="32"></circle></svg>
+</div>
+<!-- Loader / End -->
+
+<!-- Header -->
+<header id="header" class="header-vertical collapsed dark">
+
+    <!-- Photo -->
+    <a href="kirchel_adam_portfolio.html" class="photo">
+        <img src="assets/img/photos/accountant_avatar.jpg" alt="">
+    </a>
+
+    <!-- Navigation -->
+    <nav id="nav-menu">
+        <ul class="nav nav-vertical">
+            <li><a href="/#start"><span>Start</span></a></li>
+            <li><a href="/#resume"><span>Resume</span></a></li>
+            <li><a href="/#portfolio"><span>Portfolio</span></a></li>
+            <li><a href="/#contact"><span>Contact</span></a></li>
+        </ul>
+        <span class="selector"></span>
+    </nav>
+
+    <!-- Header Toggle -->
+    <a href="#" id="header-toggle" class="nav-toggle"><span><span></span></span></a>
+
+</header>
+<!-- Header / End -->
+
+<!-- Content -->
+<div id="content" class="bg-light">
+
+    <!-- Post / Item -->
+    <article class="post single">
+        <nav class="post-nav">
+            <ul class="nav-icons">
+                <li><a href="/thermal_analysis_simulation/"><img style="width:20px;" src="{% static 'main/img/website_images/left.svg' %}"></a></li>
+                <li><a href="/">Back to list</a></li>
+                <li><a href="/financial_GUI_package_2/"><img style="width:20px;" src="{% static 'main/img/website_images/right.svg' %}"></a></li>
+            </ul>
+        </nav>
+        <div class="post-image"><img src={% static 'main/img/website_images/financial_web_app.jpg' %} alt=""></div>
+        <div class="post-content">
+            <ul class="post-meta">
+                <li>26 May, 2020</li>
+            </ul>
+            <h1><a href="#">Financial Analysis Web Application</a></h1>
+            <p class="lead">
+				<ul>
+					<li>Website built using Django that allows users to perform statistical analysis on companies in the FTSE 100.</li>
+					<li>Includes candlestick graphs, MACD (Moving Average Convergence Divergence), SMA (Simple Moving Average) and RSI (Relative Strength Index) of FTSE 100 index over the past year.</li>
+					<li>Includes stock price, MACD, RSI and SMA for all stocks in the FTSE 100 currently, and lists current stock statistics.</li>
+					<li>Allows users to register and track any changes they made, with their data being stored in an SQLite database.</li>
+					<li>Allows users to simulate the buying and selling of stocks to track performance.</li>
+					<li>Allows users to build a portfolio to keep track on stocks of interest.</li>
+					<li>Allows the user to screener stocks by using a filtering tool.</li>
+				</ul>
+			</p>
+            <p>
+            <h3>Introduction</h3>
+			The stock market appears to be a daunting place for an amateur investor, especially given the effects of the Coronavirus on the current economic climate. An online tool that would be able to guide these types of investors to reasonable decisions or at least to educate them on investing would be practical. Therefore, I have created a webpage that is able to allow users to research and track potential investments. It comprises of:
+			<ul>
+				<li>The overall web framework made using Django (Python)</li>
+				<li>Dynamic elements using JavaScript</li>
+				<li>Visual elements using HTML and CSS</li>
+				<li>A database using SQLite</li>
+			</ul>
+			This application would be able to perform the same tasks as the financial GUI package, however this time it will be able to track user data.
+			<br><br>
+			<h3>User Interaction</h3>
+			The application’s initial configuration allows user access to the homepage, the registration page and the login page. The registration page requires the input of a username, email and password. The validity of these details is assessed and are added to the database. As soon as the user has registered, it logs into their account and notifies them by displaying a ‘toast’. The user can logout by pressing the ‘logout’ tab which sends them back to the initial configuration. If they want to login again, they just need to press the ‘login’ tab and enter their username and password.
+			<br><br>
+			<figure class = "centre-caption">
+				<img  src="{% static 'main/img/website_images/financial_web_app/Registration_page.png' %}" style="width:70%; display: block; margin:auto;">
+				<figcaption style="width:100%; margin:auto; display: block; text-align: center;">Fig.1 - User registration page</figcaption>
+			</figure>
+			<br><br>
+			<h3>Homepage and stock pages</h3>
+			The homepage displays the candlestick, SMA, MACD and RSI plots of the FTSE 100 index. These plots are generated from current index prices parsed from Yahoo Finance. This data and the plots are updated daily by using a background-task manager and scheduling a Cron task.<br>
+			<br><br>
+			<figure class = "centre-caption">
+				<img  src="{% static 'main/img/website_images/financial_web_app/homepage_SMA.png' %}" style="width:70%; display: block; margin:auto;">
+				<figcaption style="width:100%; margin:auto; display: block; text-align: center;">Fig.2 - FTSE 100 index 20 days SMA </figcaption>
+			</figure>
+			<br>
+			<figure class = "centre-caption">
+				<img  src="{% static 'main/img/website_images/financial_web_app/homepage_MACD.png' %}" style="width:70%; display: block; margin:auto;">
+				<figcaption style="width:100%; margin:auto; display: block; text-align: center;">Fig.3 - FTSE 100 index MACD </figcaption>
+			</figure>
+			<br>
+			<figure class = "centre-caption">
+				<img  src="{% static 'main/img/website_images/financial_web_app/homepage_RSI.png' %}" style="width:70%; display: block; margin:auto;">
+				<figcaption style="width:100%; margin:auto; display: block; text-align: center;">Fig.4 - FTSE 100 index RSI </figcaption>
+			</figure>
+			<br>
+			The stock pages display the stock statistics, candlestick, MACD, SMA and RSI plots for all companies in the FTSE 100. The statistics and stock prices are parsed again from Yahoo Finance and updated daily. The plots are created from these stock prices and are updated daily.
+			<br><br>
+			<figure class = "centre-caption">
+				<img  src="{% static 'main/img/website_images/financial_web_app/ticker_page.png' %}" style="width:70%; display: block; margin:auto;">
+				<figcaption style="width:100%; margin:auto; display: block; text-align: center;">Fig.5 - Generic Ticker Page </figcaption>
+			</figure>
+			
+			<br><br>
+			<h3>Stock Screener</h3>
+			
+			The stock screener page allows for users to view stocks based on input parameters (currently maximum and minimum). It allows for the user to append an endless list of requirements, and the screener is programmed to select the companies that meet these requirements. The resultant table is interactive so that the row selected transports the user to the respective ticker’s page.
+			<br><br>
+			<figure class = "centre-caption">
+				<img  src="{% static 'main/img/website_images/financial_web_app/stock_screener.png' %}" style="width:70%; display: block; margin:auto;">
+				<figcaption style="width:100%; margin:auto; display: block; text-align: center;">Fig.6 - Stock Screener feature </figcaption>
+			</figure>
+			<br><br>
+			<h3>Portfolio</h3>
+			The portfolio page allows for users to build a list of company tickers that is unique to that user. Like the screener, the table is interactive and transports the use rto the respective ticker page when selected.
+			<br><br>
+			<figure class = "centre-caption">
+				<img  src="{% static 'main/img/website_images/financial_web_app/portfolio.png' %}" style="width:70%; display: block; margin:auto;">
+				<figcaption style="width:100%; margin:auto; display: block; text-align: center;">Fig.7 - Portfolio feature </figcaption>
+			</figure>
+			<br><br>
+			<h3>Simulation</h3>
+			The simulation page tracks the performance in the market of a list of investments selected by the user. The page gathers data on the stock price, increase in price and percentage yield from each stock since the date the user had placed the investment. Using this feature the user can track their portfolio over time, and can test their investment theories out in practice.
+			<br><br>
+			<figure class = "centre-caption">
+				<img  src="{% static 'main/img/website_images/financial_web_app/simulation.png' %}" style="width:70%; display: block; margin:auto;">
+				<figcaption style="width:100%; margin:auto; display: block; text-align: center;">Fig.8 - Simulation feature </figcaption>
+			</figure>
+			<br><br>
+			<h3>Conclusion and Improvements</h3>
+			The overall layout and features of the website accomplishes the main objectives, however there is large scope for improvement:
+			<ul>
+				<li>Improve the design of the website and the aesthetics</li>
+				<li>Improve the security so user data cannot be hacked/accessed</li>
+				<li>Add improved stock screener capabilities with use of algorithms</li>
+				<li>Import data for companies in other indexes (Midcap/Smallcap)</li>
+				<li>Allow users to communicate with the admin through a chat option or email</li>
+				<li>Add an automated feature to respond to queries (ie a chat bot)</li>
+			</ul>
+            </p>
+        </div>
+		   
+    </article>
+	
+	<a href="{% static 'main/sample_code/financial_web_app.zip' %}" class="btn btn-primary btn-lg" style="top: 50%;left: 40%;">Download Code</a>
+
+</div>
+<!-- Content / End -->
+
+<!-- Mobile Nav Toggle -->
+<a href="#" id="vertical-nav-toggle" class="nav-toggle" data-toggle="mobile-nav"><span><span></span></span></a>
+
+{% include "main/includes/chatbot.html" %}
+
+<!-- Ajax Modal -->
+<div id="ajax-modal"></div>
+<!-- Ajax Close -->
+<a href="#" class="ajax-close" data-dismiss="ajax-modal"><i class="ti-close"></i></a>
+<!-- Ajax Loader -->
+<svg id="ajax-loader" class="loader" width="32px" height="32px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg"><circle class="circle" fill="none" stroke-width="5" stroke-linecap="round" cx="32" cy="32" r="32"></circle></svg>
+
+<!-- JS Libraries -->
+<script src="{% static 'main/js/jquery-1.12.4.min.js' %}"></script>
+
+<!-- JS Plugins -->
+<script src="{% static 'main/js/plugins.js' %}"></script>
+
+<!-- JS Core -->
+<script src="{% static 'main/js/core.js' %}"></script>
+
+<!-- JS Google Map -->
+<script src="http://maps.google.com/maps/api/js"></script>
+
+</body>
+
+</html>
+

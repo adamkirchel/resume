@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+{% load static %}
+
+<!-- Meta -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<!-- Title -->
+<title>Financial GUI Analysis Package</title>
+
+<!-- Favicons -->
+<link rel="shortcut icon" href="assets/img/favicon.png">
+<link rel="apple-touch-icon" href="assets/img/favicon_60x60.png">
+<link rel="apple-touch-icon" sizes="76x76" href="assets/img/favicon_76x76.png">
+<link rel="apple-touch-icon" sizes="120x120" href="assets/img/favicon_120x120.png">
+<link rel="apple-touch-icon" sizes="152x152" href="assets/img/favicon_152x152.png">
+
+<!-- Google Web Fonts -->
+<link href="https://fonts.googleapis.com/css?family=Lora:400,400i%7CPoppins:300,400,500,600" rel="stylesheet">
+
+<!-- CSS Styles -->
+<link rel="stylesheet" href= "{% static 'main/css/styles.css' %}" />
+
+<!-- CSS Theme -->
+<link id="theme" rel="stylesheet" href="{% static 'main/css/themes/theme-serif-red.css' %}" />
+
+</head>
+
+<body>
+
+<!-- Loader -->
+<div id="page-loader">
+    <svg class="loader" width="32px" height="32px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg"><circle class="circle" fill="none" stroke-width="5" stroke-linecap="round" cx="32" cy="32" r="32"></circle></svg>
+</div>
+<!-- Loader / End -->
+
+<!-- Header -->
+<header id="header" class="header-vertical collapsed dark">
+
+    <!-- Photo -->
+    <a href="kirchel_adam_portfolio.html" class="photo">
+        <img src="assets/img/photos/accountant_avatar.jpg" alt="">
+    </a>
+
+    <!-- Navigation -->
+    <nav id="nav-menu">
+        <ul class="nav nav-vertical">
+            <li><a href="/#start"><span>Start</span></a></li>
+            <li><a href="/#resume"><span>Resume</span></a></li>
+            <li><a href="/#portfolio"><span>Portfolio</span></a></li>
+            <li><a href="/#contact"><span>Contact</span></a></li>
+        </ul>
+        <span class="selector"></span>
+    </nav>
+
+    <!-- Header Toggle -->
+    <a href="#" id="header-toggle" class="nav-toggle"><span><span></span></span></a>
+
+</header>
+<!-- Header / End -->
+
+<!-- Content -->
+<div id="content" class="bg-light">
+
+    <!-- Post / Item -->
+    <article class="post single">
+        <nav class="post-nav">
+            <ul class="nav-icons">
+                <li><a href="/Food_tracking_web_app/"><img style="width:20px;" src="{% static 'main/img/website_images/left.svg' %}"></a></li>
+                <li><a href="/">Back to list</a></li>
+                <li><a href="/dating_app/"><img style="width:20px;" src="{% static 'main/img/website_images/right.svg' %}"></a></li>
+            </ul>
+        </nav>
+        <div class="post-image"><img src="{% static 'main/img/website_images/finance.jpg' %}" alt=""></div>
+        <div class="post-content">
+            <ul class="post-meta">
+                <li>Last updated 29 March, 2020</li>
+            </ul>
+            <h1><a href="#">Financial GUI Analysis Project</a></h1>
+            <p class="lead">The goal of this project was to create a fully functioning Graphical User Interface (GUI) that would be able to import, process, visualise and analyse current and historical financial data. This GUI would be useful as a tool to aid old or new investors by helping them view trends and statistics easily and perform analysis that would enable them to develop a portfolio.</p>
+            <h3>Importing the data</h3>
+			<p>The starting point for this project was importing and processing the data from an online source. The data would be in four different forms:</p>
+			<ul>
+				<li>Historical index values for the S&P 500</li>
+				<li>Current index values for the S&P 500</li>
+				<li>Historical stock data from companies in the S&P 500</li>
+				<li>Current stock data from companies in the S&P 500</li>
+			</ul>
+			<p>The historical data would be the basis for the training of our Machine Learning classifier, and the current data would be used by this classifier to predict new labels. Yahoo Finance was used to import historical S&P 500 index values and current  and historical stock data for companies in the S&P 500. A bot accessed the html code for the stock index and statistics for the individual companies and extracted the relevant information. These values were appended to a data frame which could be used for analysis. To collect data for the current S&P 500 index values I parsed data from Quandl, a source for financial datasets. The dataset was initialised using Pandas, and a series of issues were encountered when trying to extract and process the data including NaN value returns. These were solved individually using try and except commands, and a final data frame was saved to a csv (comma separated variable) file. The data frame had several rows for each company, each identifiable by the timestamp.</p>
+			<figure class = "centre-caption">
+				<img  src="{% static 'main/img/website_images/financial_GUI_package/Importing data.png' %}" style="width:70%; display: block; margin:auto;">
+				<figcaption style="width:100%; margin:auto; display: block; text-align: center;">Fig.1 - Importing the financial data using the GUI</figcaption>
+			</figure>
+			<br>
+			<h3>Machine Learning Analysis</h3>
+			<p>From these datasets, a supervised machine learning algorithm was used to classify companies based on their current statistics. The labels attributed to each row was defined as a 1 if it was a buy, and a 0 if it was not. A buy was defined as a company that had a great increase in value across a year than the S&P 500 index. This ultimately meant that this company had beaten the market.</p>
+			</br>
+			<p>The features used to classify the data included the book/price ratio, enterprise value etc. These are basic metrics used by investors to calculate the quality of a company and assess whether a company is undervalued or overvalued relative to its stock price. Through using a machine learning algorithm, we are trying to automate the process of determining whether a stock is over or undervalued.</p>
+			</br>
+			<p>The labelled data was divided into training and test sets, with the training set to be used in the Machine Learning algorithm. The Support Vector Machine (SVM) algorithm was used to classify data, which uses a hyperplane defined by the closest data points (support vectors). This algorithm was able to return a list of companies that were predicted to beat the market by a pre-defined threshold given current financial data.</p>
+			</br>
+			<p>This algorithm is only is 54% accurate, therefore it is not a perfect tool for predicting the stock market. However, it is a useful tool for forming a basis for a portfolio that would require further research.</p>
+			</br>
+			<figure class = "centre-caption">
+				<img  src="{% static 'main/img/website_images/financial_GUI_package/Machine learning.png' %}" style="width:70%; display: block; margin:auto;">
+				<figcaption style="width:100%; margin:auto; display: block; text-align: center;">Fig.2 - Using Machine Learning analysis in the GUI</figcaption>
+			</figure>
+			</br>
+			<h3>Graphical User Interface</h3>
+			<p>Using the imported data and machine learning analysis software, a GUI was created that could encompass all this data into a package. Each section of the GUI is divided using tabs, which can be selected easily. The GUI allows the user to import the data from the sources specified previously with a loading bar. It allows the user to import data from a specific time period for the S&P 500. To expand upon this, I would like to incorporate other indexes such as the FTSE100 etc.</p>
+			</br>
+			<p>It allows you to visualise the imported data frame so you can assess some basic features. This includes the creation of a table of statistics for each company for a date selected by the user. Furthermore, it allows the user to plot the trend of the features for each company across the entire period, which can be selected using dropdown menus. These plots can be saved in the directory defined by the user.</p>
+			</br>
+			<p>The last section incorporates the machine learning analysis. The interface allows you to select the time period for investment and the threshold for deciding a buy. These parameters are used in the machine algorithm to generate a list of suitable companies, displayed in the right-hand side window, alongside the accuracy of the algorithm. Data from these companies can be visualised by selecting them from a dropdown menu, resulting in a plot being displayed below.</p>
+			</br>
+			<figure class = "centre-caption">
+				<img  src="{% static 'main/img/website_images/financial_GUI_package/Visualising data.png' %}" style="width:70%; display: block; margin:auto;">
+				<figcaption style="width:100%; margin:auto; display: block; text-align: center;">Fig.3 - Visualising the financial trends and statistics using the GUI</figcaption>
+			</figure>
+			<br>
+			<h3>Conclusion</h3>
+			<p>The GUI was successful at importing, processing, visualising and analysing the data set using machine learning, however there are several areas for improvement:</p>
+			<ul>
+				<li>Importing data from other financial markets (FTSE 100).</li>
+				<li>Using other machine learning algorithms to improve the accuracy of the results.</li>
+				<li>Visualise the index performance against the stock performance, so that inferences can be made about stock performance.</li>
+				<li>Risk mitigation using graphical analysis such as the Simple Moving Average (SMA), Moving Average Convergence Divergence (MACD) and the Relative Strength Index (RSI).</li>
+			</ul>
+		</div>
+		
+		
+    </article>
+	
+	<a href="{% static 'main/sample_code/financial_GUI.zip' %}" class="btn btn-primary btn-lg" style="top: 50%;left: 40%;">Download Code</a>
+</div>
+<!-- Content / End -->
+
+<!-- Mobile Nav Toggle -->
+<a href="#" id="vertical-nav-toggle" class="nav-toggle" data-toggle="mobile-nav"><span><span></span></span></a>
+
+{% include "main/includes/chatbot.html" %}
+
+<!-- Ajax Modal -->
+<div id="ajax-modal"></div>
+<!-- Ajax Close -->
+<a href="#" class="ajax-close" data-dismiss="ajax-modal"><i class="ti-close"></i></a>
+<!-- Ajax Loader -->
+<svg id="ajax-loader" class="loader" width="32px" height="32px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg"><circle class="circle" fill="none" stroke-width="5" stroke-linecap="round" cx="32" cy="32" r="32"></circle></svg>
+
+<!-- JS Libraries -->
+<script src="{% static 'main/js/jquery-1.12.4.min.js' %}"></script>
+
+<!-- JS Plugins -->
+<script src="{% static 'main/js/plugins.js' %}"></script>
+
+<!-- JS Core -->
+<script src="{% static 'main/js/core.js' %}"></script>
+
+<!-- JS Google Map -->
+<script src="http://maps.google.com/maps/api/js"></script>
+
+</body>
+
+</html>
+

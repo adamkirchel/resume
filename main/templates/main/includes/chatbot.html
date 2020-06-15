@@ -1,0 +1,81 @@
+
+
+
+
+<div id="bot-popup-ctrl" class="bot-popup-ctrl" onclick="myFunction()">
+    <button href="#" id="myBtn" class="bot-popup-toggle" ><span class="typing" data-text='["Have a question?","Talk to my bot!"]'>Talk to my bot!</span></button>
+</div>
+
+<div id="modal" class="modal" style="z-index: 3;">
+	<div  style="position:absolute;background-color:#b43636;border-radius:10px;width:150px;right:0px;top:100px;">
+		<span class="close" style="position:absolute;right:10px;color:#ffffff;">&times;</span>
+		<textarea disabled id="chat-log" class="text-area" cols="17" rows="10" style="color:#ffffff;margin-top:30px;margin-left:10px;font-size:12px;"></textarea><br>
+		<input id="chat-message-input" class="text-input" type="text" size="13" style="font-size:12px;width:100px;" placeholder="Start a conversation..."><br>
+		<input id="chat-message-submit" class="chat-message-submit" type="button" value="Send" style="border-radius:10px">
+	</div>
+</div>
+
+    {{ room_name|json_script:"room-name" }}
+	
+	<script>
+	var modal = document.getElementById("modal");
+
+	// Get the button that opens the modal
+	var btn = document.getElementById("myBtn");
+
+	// Get the <span> element that closes the modal
+	var span = document.getElementsByClassName("close")[0];
+
+	// When the user clicks on the button, open the modal
+	btn.onclick = function() {
+	  modal.style.display = "block";
+	}
+
+	// When the user clicks on <span> (x), close the modal
+	span.onclick = function() {
+	  modal.style.display = "none";
+	}
+
+	// When the user clicks anywhere outside of the modal, close it
+	window.onclick = function(event) {
+	  if (event.target == modal) {
+		modal.style.display = "none";
+	  }
+	}
+	</script>
+    <script>
+        const roomName = JSON.parse(document.getElementById('room-name').textContent);
+
+        const chatSocket = new WebSocket(
+            'ws://'
+            + window.location.host
+            + '/ws/chat/'
+            + roomName
+            + '/'
+        );
+
+        chatSocket.onmessage = function(e) {
+            const data = JSON.parse(e.data);
+            document.querySelector('#chat-log').value += (data.message + '\n');
+        };
+
+        chatSocket.onclose = function(e) {
+            console.error('Chat socket closed unexpectedly');
+        };
+
+        document.querySelector('#chat-message-input').focus();
+        document.querySelector('#chat-message-input').onkeyup = function(e) {
+            if (e.keyCode === 13) {  // enter, return
+                document.querySelector('#chat-message-submit').click();
+            }
+        };
+
+        document.querySelector('#chat-message-submit').onclick = function(e) {
+            const messageInputDom = document.querySelector('#chat-message-input');
+            const message = messageInputDom.value;
+            chatSocket.send(JSON.stringify({
+                'message': message
+            }));
+            messageInputDom.value = '';
+        };
+    </script>

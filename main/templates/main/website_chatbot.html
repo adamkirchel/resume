@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+{% load static %}
+
+<!-- Meta -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<!-- Title -->
+<title>Website Chatbot</title>
+
+<!-- Favicons -->
+<link rel="shortcut icon" href="assets/img/favicon.png">
+<link rel="apple-touch-icon" href="assets/img/favicon_60x60.png">
+<link rel="apple-touch-icon" sizes="76x76" href="assets/img/favicon_76x76.png">
+<link rel="apple-touch-icon" sizes="120x120" href="assets/img/favicon_120x120.png">
+<link rel="apple-touch-icon" sizes="152x152" href="assets/img/favicon_152x152.png">
+
+<!-- Google Web Fonts -->
+<link href="https://fonts.googleapis.com/css?family=Lora:400,400i%7CPoppins:300,400,500,600" rel="stylesheet">
+
+<!-- CSS Styles -->
+<link rel="stylesheet" href= "{% static 'main/css/styles.css' %}" />
+
+<!-- CSS Theme -->
+<link id="theme" rel="stylesheet" href="{% static 'main/css/themes/theme-serif-red.css' %}" />
+
+</head>
+
+<body>
+
+<!-- Loader -->
+<div id="page-loader">
+    <svg class="loader" width="32px" height="32px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg"><circle class="circle" fill="none" stroke-width="5" stroke-linecap="round" cx="32" cy="32" r="32"></circle></svg>
+</div>
+<!-- Loader / End -->
+
+<!-- Header -->
+<header id="header" class="header-vertical collapsed dark">
+
+    <!-- Photo -->
+    <a href="kirchel_adam_portfolio.html" class="photo">
+        <img src="" alt="">
+    </a>
+
+    <!-- Navigation -->
+    <nav id="nav-menu">
+        <ul class="nav nav-vertical">
+            <li><a href="/#start"><span>Start</span></a></li>
+            <li><a href="/#resume"><span>Resume</span></a></li>
+            <li><a href="/#portfolio"><span>Portfolio</span></a></li>
+            <li><a href="/#contact"><span>Contact</span></a></li>
+        </ul>
+        <span class="selector"></span>
+    </nav>
+
+    <!-- Header Toggle -->
+    <a href="#" id="header-toggle" class="nav-toggle"><span><span></span></span></a>
+
+</header>
+<!-- Header / End -->
+
+<!-- Content -->
+<div id="content" class="bg-light">
+
+    <!-- Post / Item -->
+    <article class="post single">
+        <nav class="post-nav">
+            <ul class="nav-icons">
+                <li><a href="/financial_GUI_package_2/"><img style="width:20px;" src="{% static 'main/img/website_images/left.svg' %}"></a></li>
+                <li><a href="/">Back to list</a></li>
+                <li><a href="/Food_tracking_web_app/"><img style="width:20px;" src="{% static 'main/img/website_images/right.svg' %}"></a></li>
+            </ul>
+        </nav>
+        <div class="post-image"><img src="{% static 'main/img/website_images/bot.jpg' %}" alt=""></div>
+        <div class="post-content">
+            <ul class="post-meta">
+                <li>30 May, 2020</li>
+            </ul>
+            <h1><a href="#">Website Chatbot</a></h1>
+            <p class = "lead">This projected aimed to:
+			<ul>
+				<li>Produce a tool that can answer users’ questions on my personal portfolio website.</li>
+				<li>Select the most appropriate response to questions using machine learning techniques.</li>
+				<li>Use natural language packages to find the stem of user inputs.</li>
+				<li>Integrate this onto the website so it can run synchronously with the webpage.</li>
+			<br><br>
+
+			<h3>Introduction</h3>
+
+			Chat bots are used frequently on websites to assist users who need to ask a question. In my case, my portfolio website would benefit with having a chatbot that is able to answer FAQs from users. This would help me save time in the long-term as recruiters could ask relevant questions to the bot rather than myself.
+			
+			<br><br>
+			
+			<h3>Building the training set</h3>
+
+			The training set was created using a JSON file, with each specific hypothetical question category being given a ‘tag’. Each category was given a list of potential questions that could be asked by the user, and a series of answers to these questions. In some instances, one answer would be needed as it is a factual answer, whereas in others several answers were given and one would be chosen at random.
+			
+			<br><br>
+			
+			<figure class = "centre-caption">
+				<img  src="Free-body diagram shuttlecock.png" style="width:50%; display: block; margin:auto;">
+				<figcaption style="width:100%; margin:auto; display: block; text-align: center;">Fig.1 - Free-body diagram of shuttlecock in 2D space</figcaption>
+			</figure>
+			
+			<br><br>
+			
+			Each question was then processed so that they could be used in the machine learning model. Each sentence was split into a list, and the stem of each word was found. This is so that the words can be compared easily. A reference list was then made from all the words processed, with each item referring to a singular question. A label was created for each question detailing its tag.
+			
+			<br><br>
+			
+			<h3>Building the model</h3>
+
+			A neural network model was then made of two tiers of 8 nodes. This would be a regression model and therefore be able to provide a probability of a question relating to a specific tag. It was made using TensorFlow’s neural net module, which can be implemented efficiently. The training set was passed through this model, with the resultant model ready to be used on actual data.
+			
+			<br><br>
+
+			<figure class = "centre-caption">
+				<img  src="Shuttlecock 2D inital parameters.png" style="width:70%; display: block; margin:auto;">
+				<figcaption style="width:100%; margin:auto; display: block; text-align: center;">Fig.2 - Modelled 2D flight of shuttlecock with initial parameters x = -2.1 m and y = 1 m </figcaption>
+			</figure>
+
+			<br>
+
+			<h3>Implementing the bot</h3>
+			
+			This model is deployed every time a question is asked and returns the tag of the category that it is most probable to belong to. It was integrated into the website via a popup window that had a text-display and text-input field. To allow the bot to run synchronously with the server, Django Channels was used. This provided the capability for the bot to be connected via websockets to an asynchronous layer beneath Django.
+			<br><br>
+			Give it a go if you want! Press the button in the top right hand corner and start asking the bot questions!
+			</div>
+        
+    </article>
+
+	<a href="{% static 'main/sample_code/chatbot.zip' %}" class="btn btn-primary btn-lg" style="top: 50%;left: 40%;">Download Code</a>
+
+</div>
+<!-- Content / End -->
+
+<!-- Mobile Nav Toggle -->
+<a href="#" id="vertical-nav-toggle" class="nav-toggle" data-toggle="mobile-nav"><span><span></span></span></a>
+
+
+
+{% include "main/includes/chatbot.html" %}
+
+
+<!-- Ajax Modal -->
+<div id="ajax-modal"></div>
+<!-- Ajax Close -->
+<a href="#" class="ajax-close" data-dismiss="ajax-modal"><i class="ti-close"></i></a>
+<!-- Ajax Loader -->
+<svg id="ajax-loader" class="loader" width="32px" height="32px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg"><circle class="circle" fill="none" stroke-width="5" stroke-linecap="round" cx="32" cy="32" r="32"></circle></svg>
+
+<!-- JS Libraries -->
+<script src="{% static 'main/js/jquery-1.12.4.min.js' %}"></script>
+
+<!-- JS Plugins -->
+<script src="{% static 'main/js/plugins.js' %}"></script>
+
+<!-- JS Core -->
+<script src="{% static 'main/js/core.js' %}"></script>
+
+<!-- JS Google Map -->
+<script src="http://maps.google.com/maps/api/js"></script>
+
+</body>
+
+</html>
+

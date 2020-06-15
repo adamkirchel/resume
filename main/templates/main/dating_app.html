@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+{% load static %}
+
+<!-- Meta -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<!-- Title -->
+<title>Predicting Characteristics of Online Users Using Machine Learning</title>
+
+<!-- Favicons -->
+<link rel="shortcut icon" href="assets/img/favicon.png">
+<link rel="apple-touch-icon" href="assets/img/favicon_60x60.png">
+<link rel="apple-touch-icon" sizes="76x76" href="assets/img/favicon_76x76.png">
+<link rel="apple-touch-icon" sizes="120x120" href="assets/img/favicon_120x120.png">
+<link rel="apple-touch-icon" sizes="152x152" href="assets/img/favicon_152x152.png">
+
+<!-- Google Web Fonts -->
+<link href="https://fonts.googleapis.com/css?family=Lora:400,400i%7CPoppins:300,400,500,600" rel="stylesheet">
+
+<!-- CSS Styles -->
+<link rel="stylesheet" href= "{% static 'main/css/styles.css' %}" />
+
+<!-- CSS Theme -->
+<link id="theme" rel="stylesheet" href="{% static 'main/css/themes/theme-serif-red.css' %}" />
+
+</head>
+
+<body>
+
+<!-- Loader -->
+<div id="page-loader">
+    <svg class="loader" width="32px" height="32px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg"><circle class="circle" fill="none" stroke-width="5" stroke-linecap="round" cx="32" cy="32" r="32"></circle></svg>
+</div>
+<!-- Loader / End -->
+
+<!-- Header -->
+<header id="header" class="header-vertical collapsed dark">
+
+    <!-- Photo -->
+    <a href="kirchel_adam_portfolio.html" class="photo">
+        <img src="assets/img/photos/accountant_avatar.jpg" alt="">
+    </a>
+
+    <!-- Navigation -->
+    <nav id="nav-menu">
+        <ul class="nav nav-vertical">
+            <li><a href="/#start"><span>Start</span></a></li>
+            <li><a href="/#resume"><span>Resume</span></a></li>
+            <li><a href="/#portfolio"><span>Portfolio</span></a></li>
+            <li><a href="/#contact"><span>Contact</span></a></li>
+        </ul>
+        <span class="selector"></span>
+    </nav>
+
+    <!-- Header Toggle -->
+    <a href="#" id="header-toggle" class="nav-toggle"><span><span></span></span></a>
+
+</header>
+<!-- Header / End -->
+
+<!-- Content -->
+<div id="content" class="bg-light">
+
+    <!-- Post / Item -->
+    <article class="post single">
+        <nav class="post-nav">
+            <ul class="nav-icons">
+                <li><a href="/financial_GUI_package/"><img style="width:20px;" src="{% static 'main/img/website_images/left.svg' %}"></a></li>
+                <li><a href="/">Back to list</a></li>
+                <li><a href="/graphical_analysis_application/"><img style="width:20px;" src="{% static 'main/img/website_images/right.svg' %}"></a></li>
+            </ul>
+        </nav>
+        <div class="post-image"><img src="{% static 'main/img/website_images/dating_app_photo.jpg' %}" alt=""></div>
+        <div class="post-content">
+            <ul class="post-meta">
+                <li>29 March, 2020</li>
+            </ul>
+            <h1><a href="#">Predicting Characteristics of Online Users Using Machine Learning</a></h1>
+            <p class="lead">A dating app has collected a large data set from users regarding their own personal qualities as well as what they desire from a partner. This data will be used to solve two principal questions: </p>
+			
+			<ul class = "lead">
+				<li>How accurately can the sex of a user be predicted from a set of additional features?</li>
+				<li>How accurately can the sex of a user be predicted form a set of written answers?</li>
+			</ul>
+            <p class="lead">These questions will be answered using Machine Learning algorithmic techniques. Several techniques will be explored and evaluated upon their efficiency, validity and suitability.</p>
+            <br><br>
+			<h2>Question 1 - How accurately can the sex of a user be predicted from a set of user-defined features?</h3>
+            <h3>Overview</h3>
+			<p>This investigation is assessing the accuracy that a datapoint can be classified, and therefore when selecting the machine learning algorithm the accuracy is the priority. It is a binary classification problem, as the user can be classified as only ‘male’ or ‘female’. The set of features used to classify the datapoints have varying importance as some may be more influential when classifying someone's sex, for example height would be more influential than star sign.
+			<br><br>
+			<h3>Visualising the Data</h3>
+			The data is initially visualised so that any patterns can be identified, and broader summation of the problem can be made.
+			<br>
+			<figure class = "centre-caption">
+				<img  src="{% static 'main/img/website_images/dating_app/Variation of sex.png' %}" style="width:70%; display: block; margin:auto;">
+				<figcaption style="width:100%; margin:auto; display: block; text-align: center;">Fig.1 - Variation of sex in the data set</figcaption>
+			</figure>
+			<br>
+			There are over 20% more male users than female users. This shows that it is more probable that a user will be male than female if selecting users at random. When visualising features that will be used to predict the labels, it is good to grasp the variation across the entire dataset. For example, the age of the user population seems to positively skewed. This sample is therefore not a true sample of the general population but skewed towards the younger generation.
+			<br>
+			<figure class = "centre-caption">
+				<img  src="{% static 'main/img/website_images/dating_app/Variation of age.png' %}" style="width:70%; display: block; margin:auto;">
+				<figcaption style="width:100%; margin:auto; display: block; text-align: center;">Fig.2 - Variation of age in the data set</figcaption>
+			</figure>
+			<br>
+			When making connections between features and the labels is it effective to look at trends within each label type (eg. Split between male and females). From this you will be able to pre-determine what features are more important than others. This is true when observing the variation of height below between male (right) and female (left) users. The difference between the men height of the male and female population is approximately 5 inches. This shows that this feature should carry significant weight in the machine learning algorithm.
+			<br>
+			<div class= "row">
+				<div class = "col-md-4 col-sm-6 col-xs-12">
+					<figure class = "centre-caption">
+						<img  src="{% static 'main/img/website_images/dating_app/Variation of height female.png' %}" style="width:70%; display: block; margin:auto;">
+						<figcaption style="width:100%; margin:auto; display: block; text-align: center;">Fig.3 - Variation of height for females</figcaption>
+					</figure>
+				</div>
+				<div class = "col-md-4 col-sm-6 col-xs-12">
+					<figure class = "centre-caption">
+						<img  src="{% static 'main/img/website_images/dating_app/Variation of height male.png' %}" style="width:70%; display: block; margin:auto;">
+						<figcaption style="width:100%; margin:auto; display: block; text-align: center;">Fig.4 - Variation of height for males</figcaption>
+					</figure>
+				</div>
+			</div>
+			<br>
+			<h3>Deciding upon a Machine Learning Algorithm</h3>
+			The machine learning algorithms that will be considered are:
+			<br><br>
+			<ul>
+				<li>K-Nearest Neighbours</li>
+				<li>Logistic Regression</li>
+				<li>Random Forest</li>
+				<li>Support Vector Machines</li>
+				<li>Neural Networks</li>
+			</ul>
+			Before a final algorithm is chosen, two candidates will be chosen based upon their suitability to solve the problem.
+			<br><br>
+			<h4>K-Nearest Neighbours</h4>
+			<div class = "row">
+			This algorithm classifies a data point by selecting its K-nearest neighbours by calculating the Euclidean distance. It determines a classification from the mode value of these neighbours. The number of neighbours K is selected by iteratively computing the accuracy for increasing amounts of K and using K that returns the greatest accuracy. This process is shown in the graph below.
+			<br>
+			
+				<figure class = "centre-caption">
+					<img  src="{% static 'main/img/website_images/dating_app/K-nearest optimised.png' %}" style="width:70%; display: block; margin:auto;">
+					<figcaption style="width:100%; margin:auto; display: block; text-align: center;">Fig 5. - Optimizing to find K</figcaption>
+				</figure>
+			</div>
+			<br>
+			<div class = "row">
+				<figure class = "centre-caption">
+					<figcaption style="width:100%; margin:auto; display: block; text-align: center;">Table 1. - K-Nearest Neighbours advantages and disadvantages</figcaption>
+					<img  src="{% static 'main/img/website_images/dating_app/pm of knearest.png' %}" style="width:70%; display: block; margin:auto;">
+				</figure>
+			</div>
+			<br><br>
+			<h4>Logistic Regression</h4>
+			<div class = "row">
+			This algorithm follows the same premise as linear regression, however the sigmoid function is used to ensure the probability that the datapoint belongs to a class remains between 0 and 1. It classifies a datapoint by setting a classification threshold, which can be varied. For the question postured, it should be set at 0.5.
+			<br><br>
+			
+				<figure class = "centre-caption">
+					<figcaption style="width:100%; margin:auto; display: block; text-align: center;">Table 2. - Logistic Regression advantages and disadvantages</figcaption>
+					<img  src="{% static 'main/img/website_images/dating_app/pm logistic regression.png' %}" style="width:70%; display: block; margin:auto;">
+				</figure>
+			</div>
+			<br>
+			<h4>Support Vector Machines</h4>
+			<div class = "row">
+			This algorithm makes classifications by defining a decision boundary, and seeing what side of the boundary an unclassified point falls on. This can solve multiple-classification problems. It uses support vectors, which are points in the data set closest to the decision boundary. For n features you need n+1 support vectors. These are used to determine boundary with the greatest margin between itself and the support vectors.
+			<br><br>
+			
+				<figure class = "centre-caption">
+					<figcaption style="width:100%; margin:auto; display: block; text-align: center;">Table 3. - Support Vector Machines advantages and disadvantages</figcaption>
+					<img  src="{% static 'main/img/website_images/dating_app/pm SVM.png' %}" style="width:70%; display: block; margin:auto;">
+				</figure>
+			</div>
+			<br>
+			<h4>Random Forest</h4>
+			<div class = "row">
+			This algorithm uses a several decision trees to determine the classification of a datapoint. Each tree classifies the dataset by separating it at each stratum using a feature. The idea is to separate using the feature that will provide the greatest information gain. Using multiple of these trees we can iteratively find the most accurate solution to predicting the label of a datapoint.
+			<br><br>
+			
+				<figure class = "centre-caption">
+					<figcaption style="width:100%; margin:auto; display: block; text-align: center;">Table 4. - Random Forest advantages and disadvantages</figcaption>
+					<img  src="{% static 'main/img/website_images/dating_app/pm Random Forest.png' %}" style="width:70%; display: block; margin:auto;">
+				</figure>
+			</div>
+			<br>
+			<h4>Neural Networks</h4>
+			<div class = "row">
+				The Perceptron is the simplest way of artificially representing a biological neuron. It takes two inputs, and outputs a label classifying the data. The input data is input into a function where weights are calculated iteratively by training on test data.
+				<br><br>
+				<figure class = "centre-caption">
+					<figcaption style="width:100%; margin:auto; display: block; text-align: center;">Table 5. - Neural Network advantages and disadvantages</figcaption>
+					<img  src="{% static 'main/img/website_images/dating_app/pm neural network.png' %}" style="width:70%; display: block; margin:auto;">
+					
+				</figure>
+			</div>
+			<br>
+			<h4>Decision</h4>
+			The machine learning algorithms all have their benefits, however the two algorithms suited to solving this problem are Random Forest and Logistic Regression. K-Nearest neighbours suffers due to long computation times and noise as a result of outliers in the dataset. This will be common in this dataset as it is defined by user input which is prone to error. The Neural Network algorithm was discounted as to develop a complex algorithm to take multiple inputs it would require further reading. Also, to achieve comparative accuracy to other classification techniques it would require greater processing power. The support vector machine algorithm was discounted as it works best when there is little noise and large margins between labels. This will not be the case for this data as there are no distinct relationships. Logistic Regression is a suitable candidate as it can perform a binary classification for a point to be either male or female. It can also give the probability that a datapoint belongs to either classification. It has a fast computation time, and it can tell us the importance of each feature towards the classification through its coefficient. The random forest classifier was chosen as it displays great performance in low sample populations. It reduces overfitting through bagging and handles non-linear parameters well. When trying to solve this problem, where features may vary non-linearly and multiple features can affect the sex of a user, the random forest classifier is most suitable, however Logistic Regression will also be used as a baseline from which Random Forest will be judged.
+			<br><br>
+			<h3>Feature Engineering</h3>
+			Let’s assess the validity of the classifier with initial independent features ‘height’ and ‘income’ chosen as inputs. The initial visualisation of these characteristics showed that they had a distinctive shift in their distribution of frequency, and therefore would be useful when classifying datapoints.
+			<br><br>
+			<div class = "row">
+				<figure class = "centre-caption">
+					<figcaption style="width:100%; margin:auto; display: block; text-align: center;">Table 6. - Accuracy of logistic regression and random forest classification techniques</figcaption>
+					<img  src="{% static 'main/img/website_images/dating_app/Accuracy of techniques 1.png' %}" style="width:70%; display: block; margin:auto;">	
+				</figure>
+			</div>
+			What do these metrics mean?
+			<br><br>
+			<ul>
+				<li><b>Accuracy</b> is the total number of correctly classified points divided by the total number of points. It is the most general metric and is used when it is into critical whether one point is misclassified.</li>
+				<li><b>Recall</b> measures the percentage of relevant items that your classifier has found. We use this for example when the number of instances of a label occurring is minute, and we want to measure how accurate we can predict an occurrence of this instance. As being male or female isn’t rare, this metric is just as useful as accuracy, and as you can see the values are similar.</li>
+				<li><b>Precision</b> on the other hand is the percentage of positive true predictions out of all positive predictions. This is useful when determining when the costs of false positives is high, for example in spam when an email that is non-spam is determined as spam.</li>
+				<li><b>F1 score</b> is the harmonic mean of precision and recall, given by:
+				F1 score takes into account both precision and recall, and is useful when you want to seek a balance between the two and there is an uneven class distribution (largeb number of actual negatives). As false negatives and false positives have business costs (tangible and intangible) accuracy is a misleading metric when evaluating data with a lot of true negatives as this dominates the value. Instead we can use F1 which considers this inbalance. However, for our problem the number of true positives and true negatives are balanced, and accuracy is just a good a metric as the other three.
+				</li>
+			</ul>
+			The table below shows the results when we input a range of different features into the random forest algorithm as we try to optimise for accuracy.
+			<br><br>
+			<div class = "row">
+				<figure class = "centre-caption">
+					<figcaption style="width:100%; margin:auto; display: block; text-align: center;">Table 7. - Optimisation for accuracy for a range of features</figcaption>
+					<img  src="{% static 'main/img/website_images/dating_app/Accuracy of features.png' %}" style="width:70%; display: block; margin:auto;">
+					
+				</figure>
+			</div>
+			<br>
+			As you can see, adding another feature has very little effect on the accuracy. However, maybe adding more than one may increase it even more.
+			<br><br>
+			<div class = "row">
+				<figure class = "centre-caption">
+					<figcaption style="width:100%; margin:auto; display: block; text-align: center;">Table 8. - Optimisation for accuracy for a range of combined features</figcaption>
+					<img  src="{% static 'main/img/website_images/dating_app/Accuracy of several features.png' %}" style="width:70%; display: block; margin:auto;">
+				</figure>
+			</div>
+			<br>
+			It is evident that there are multiple features that can be used to predict the sex of a user, and we must subtract rather than add. We must analyse the weight attributed to each feature in the logistic regression algorithm by observing the coefficients.
+			<br><br>
+			<div class = "row">
+				<figure class = "centre-caption">
+					<img  src="{% static 'main/img/website_images/dating_app/coefficient weight forest.png' %}" style="width:70%; display: block; margin:auto;">
+					<figcaption style="width:100%; margin:auto; display: block; text-align: center;">Fig 6. - Comparing the weight coefficients used in the machine learning classification</figcaption>
+				</figure>
+			</div>
+			<br>
+			You can see that height is the dominating feature, as predicted. Body type is also quite crucial in importance. The top ten features were chosen to see if there would be an improvement. The accuracy is now 87.1%, which is under what it was previously. As the split in this label is near 50/50 you can conject that the addition of features that have no importance does not have an effect on the accuracy. Due to the method in which Random Forests operates the classification still relies upon more important features. Therefore, the sex of a person can be classified with approximately 87.4% accuracy with this data set.
+			<br><br>
+			<h3>Limitations and Suggestions</h3>
+			The limitations of this algorithm include:
+			<br><br>
+			<ul>
+				<li>Long computation times when more trees are used.</li>
+				<li>Logistic regression can only visualise linear boundaries, and therefore has a lower accuracy.</li>
+				<li>Overfitting of data by the algorithm.</li>
+			</ul>
+			Over-fitting can be reduced by pruning the tree (setting a pre-defined limit to the amount of features it can divide data from. This can be done by setting the max depth of the tree before the algorithm performs the classification. A more accurate answer could be obtained by using a neural net, however this requires greater processing power.
+			</p>
+        </div>
+        
+    </article>
+
+	<a href="{% static 'main/sample_code/Dating_app.zip' %}" class="btn btn-primary btn-lg" style="top: 50%;left: 40%;">Download Code</a>
+
+</div>
+<!-- Content / End -->
+
+<!-- Mobile Nav Toggle -->
+<a href="#" id="vertical-nav-toggle" class="nav-toggle" data-toggle="mobile-nav"><span><span></span></span></a>
+
+{% include "main/includes/chatbot.html" %}
+
+
+<!-- Ajax Modal -->
+<div id="ajax-modal"></div>
+<!-- Ajax Close -->
+<a href="#" class="ajax-close" data-dismiss="ajax-modal"><i class="ti-close"></i></a>
+<!-- Ajax Loader -->
+<svg id="ajax-loader" class="loader" width="32px" height="32px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg"><circle class="circle" fill="none" stroke-width="5" stroke-linecap="round" cx="32" cy="32" r="32"></circle></svg>
+
+<!-- JS Libraries -->
+<script src="{% static 'main/js/jquery-1.12.4.min.js' %}"></script>
+
+<!-- JS Plugins -->
+<script src="{% static 'main/js/plugins.js' %}"></script>
+
+<!-- JS Core -->
+<script src="{% static 'main/js/core.js' %}"></script>
+
+<!-- JS Google Map -->
+<script src="http://maps.google.com/maps/api/js"></script>
+
+</body>
+
+</html>

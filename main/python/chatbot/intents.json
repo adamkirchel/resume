@@ -1,0 +1,56 @@
+{"intents":[
+	{"tag": "greeting",
+	 "patterns":["Hi","Hello","How are you", "Is anyone there", "Good day", "Good morning", "Good afternoon", "Whats up"],
+	 "responses": ["Hello!","Good to see you again!", "Hi there, how can I help?"],
+	 "context_set": ""
+	},
+	{"tag": "goodbye",
+	 "patterns":["bye", "see you later", "cya", "goodbye", "Have a good day", "I've got to go", "Talk to you later"],
+	 "responses": ["Talk to you later!","Goodbye!","Sad to see you go!","Come back and chat soon!"],
+	 "context_set": ""
+	},
+	{"tag": "portfolio",
+	 "patterns":["Where can I find your portfolio?","Tell me about your works","What projects have you completed?","What experience do you have?","Where can I find your work?"],
+	 "responses": ["You can find my portfolio if you press 'my works' at the top of the homepage, or if you click on portfolio on the navigation bar on the left side of the page"],
+	 "context_set": ""
+	},
+	{"tag": "contact",
+	 "patterns":["How can I contact you?","How can I reach you?","What's your phone number?","What's your email?","How can I find you?","Can you give me your contact details?","What's the best way to contact you?"],
+	 "responses": ["You can contact me via phone on 07415500820 or via email at amk76@bath.ac.uk"],
+	 "context_set": ""
+	},
+	{"tag": "CV",
+	 "patterns":["Can I have a copy of your CV?","How can I see your CV?","Can I view your CV?","Where is your resume?"],
+	 "responses": ["You can find my CV at the top of the homepage if you select 'Check my CV'"],
+	 "context_set": ""
+	},
+	{"tag": "personal",
+	 "patterns":["Tell me about yourself","Describe yourself","What do you find interesting?","What do you like doing?","Give me some bacground information","Tell me some fcts about you"],
+	 "responses": ["I'm Adam, I'm 20 years old and am currently studying for an MEng in Mechanical Engineering at the University of Bath. I really enjoy coding, playing tennis and skiing!"],
+	 "context_set": ""
+	},
+	{"tag": "university",
+	 "patterns":["Where did you go to University","What uni are you at?","What university did you attend?","What are you studying at uni?","What year are you at in University?","What Uni course are you studying for?","How long have you been at uni for?"],
+	 "responses": ["I am currently studying mechanical engineering at Bath University. I am in my third year, and have recently completed a industrial year at the global defence company QinetiQ"],
+	 "context_set": ""
+	},
+	{"tag": "age",
+	 "patterns":["How old are you?","What's your age?","how old?","age?"],
+	 "responses": ["I'm 20 years old"],
+	 "context_set": ""
+	},
+	{"tag": "qualifications",
+	 "patterns":["What qualifications do you have?","What A-levels do you have?","Qualifications?","How did you do at school?","What relevant exams have you taken?","What relevant qualifications have you got?"],
+	 "responses": ["I have five A-A* A-levels in Maths, Further Maths, Physics, Chemistry and Art. I am studying for an MEng in Mechanical Engineering"],
+	 "context_set": ""
+	},
+	{"tag": "ambition",
+	 "patterns":["What do you aim to do?","What type of career do you want?","What would be your dream job?","Where would you like to work in the future","What industry do you want to work in?"],
+	 "responses": ["I would like to work as a developer, with my main interests being in machine-learning, AI and application development"],
+	 "context_set": ""
+	},
+	{"tag": "website",
+	 "patterns":["Did you design this website?","How did you create this website?","Tell me some details about the website"],
+	 "responses": ["I designed this webiste, along with this bot, from scratch. The website is made using Django, CSS and HTML, whilst the bot was developed using Python's neural network package TensorFlow"],
+	 "context_set": ""
+	}]}

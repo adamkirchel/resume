@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+{% load static %}
+
+<!-- Meta -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<!-- Title -->
+<title>Financial GUI Analysis Package</title>
+
+<!-- Favicons -->
+<link rel="shortcut icon" href="{% static 'main/img/favicon.png' %}">
+<link rel="apple-touch-icon" href="{% static 'main/img/favicon_60x60.png' %}">
+<link rel="apple-touch-icon" sizes="76x76" href="{% static 'main/img/favicon_76x76.png' %}">
+<link rel="apple-touch-icon" sizes="120x120" href="{% static 'main/img/favicon_120x120.png' %}">
+<link rel="apple-touch-icon" sizes="152x152" href="{% static 'main/img/favicon_152x152.png' %}">
+
+<!-- Google Web Fonts -->
+<link href="https://fonts.googleapis.com/css?family=Lora:400,400i%7CPoppins:300,400,500,600" rel="stylesheet">
+
+<!-- CSS Styles -->
+<link rel="stylesheet" href= "{% static 'main/css/styles.css' %}" />
+
+<!-- CSS Theme -->
+<link id="theme" rel="stylesheet" href="{% static 'main/css/themes/theme-serif-red.css' %}" />
+
+</head>
+
+<body>
+
+<!-- Loader -->
+<div id="page-loader">
+    <svg class="loader" width="32px" height="32px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg"><circle class="circle" fill="none" stroke-width="5" stroke-linecap="round" cx="32" cy="32" r="32"></circle></svg>
+</div>
+<!-- Loader / End -->
+
+<!-- Header -->
+<header id="header" class="header-vertical collapsed dark">
+
+    <!-- Photo -->
+    <a href="kirchel_adam_portfolio.html" class="photo">
+        <img src="assets/img/photos/accountant_avatar.jpg" alt="">
+    </a>
+
+    <!-- Navigation -->
+    <nav id="nav-menu">
+        <ul class="nav nav-vertical">
+            <li><a href="/#start"><span>Start</span></a></li>
+            <li><a href="/#resume"><span>Resume</span></a></li>
+            <li><a href="/#portfolio"><span>Portfolio</span></a></li>
+            <li><a href="/#contact"><span>Contact</span></a></li>
+        </ul>
+        <span class="selector"></span>
+    </nav>
+
+    <!-- Header Toggle -->
+    <a href="#" id="header-toggle" class="nav-toggle"><span><span></span></span></a>
+
+</header>
+<!-- Header / End -->
+
+<!-- Content -->
+<div id="content" class="bg-light">
+
+    <!-- Post / Item -->
+    <article class="post single">
+        <nav class="post-nav">
+            <ul class="nav-icons">
+                <li><a href="/financial_website_application/"><img style="width:20px;" src="{% static 'main/img/website_images/left.svg' %}"></a></li>
+                <li><a href="/">Back to list</a></li>
+                <li><a href="/website_chatbot/"><img style="width:20px;" src="{% static 'main/img/website_images/right.svg' %}"></a></li>
+            </ul>
+        </nav>
+        <div class="post-image"><img src="{% static 'main/img/website_images/finance.jpg' %}" alt=""></div>
+        <div class="post-content">
+            <ul class="post-meta">
+                <li>Last updated 26 May, 2020</li>
+            </ul>
+            <h1><a href="#">Financial GUI Analysis Project, Vol 2</a></h1>
+            <p class="lead">The goal for this project was to improve the previous GUI model to be able to import, process, visualise and analyse current and historical and financial data in more detail. This would mean employing more features, such as graphing tools and a stock screener. Furthermore, this updated version would have additional user interaction features to enable the tracking of stocks.</p>
+            <h3>Importing the data</h3>
+			<p>The GUI allows the user to import data from trusted sources on historical and current stock statistics. This is similar to the previous version of the software, however this updated version displays the files uploaded in the table in the top right corner, along with their size, source and link to the source.</p>
+			<br><br>
+			<figure class = "centre-caption">
+				<img  src="{% static 'main/img/website_images/financial_GUI_package_2/importing_data.png' %}" style="width:70%; display: block; margin:auto;">
+				<figcaption style="width:100%; margin:auto; display: block; text-align: center;">Fig.1 - Importing the financial data using the GUI</figcaption>
+			</figure>
+			<br><br>
+			<h3>Stock Screener</h3>
+			The stock screener feature allows users to append multiple conditions using drag bars to specify the maximum and minimum. After updating, it displays the list of companies that meet the conditions specified by the user. The ticker can then be selected and the features related to that company can be analysed on the right side of the page.
+			<br><br>
+			<figure class = "centre-caption">
+				<img  src="{% static 'main/img/website_images/financial_GUI_package_2/stock_screener.png' %}" style="width:70%; display: block; margin:auto;">
+				<figcaption style="width:100%; margin:auto; display: block; text-align: center;">Fig.2 - Stock screener page</figcaption>
+			</figure>
+			<br><br>
+			The right side of the page can be toggled between analysis of individual features, stock price, industry comparison and risk analysis. The individual features are grouped in individual tables; company basics, stock health, projected performance, company health, company past performance and stock ratios. These are colour coded based upon how they compare to other stocks, with red being in the bottom 20, yellow in the middle 60 and green in the top 20. The trend analysis tab plots the company’s stock price against the FTSE 100 index. The industry comparison tab compares the company’s key statistics with other companies in the same industry.
+			<br><br>
+			<figure class = "centre-caption">
+				<img  src="{% static 'main/img/website_images/financial_GUI_package_2/trend_analysis.png' %}" style="width:70%; display: block; margin:auto;">
+				<figcaption style="width:100%; margin:auto; display: block; text-align: center;">Fig.3 - Analysing trends</figcaption>
+			</figure>
+			<br><br>
+			<figure class = "centre-caption">
+				<img  src="{% static 'main/img/website_images/financial_GUI_package_2/industry_comparison.png' %}" style="width:70%; display: block; margin:auto;">
+				<figcaption style="width:100%; margin:auto; display: block; text-align: center;">Fig.4 - Comparing stocks in the same industry</figcaption>
+			</figure>
+			<br><br>
+			<figure class = "centre-caption">
+				<img  src="{% static 'main/img/website_images/financial_GUI_package_2/MACD_plot.png' %}" style="width:70%; display: block; margin:auto;">
+				<figcaption style="width:100%; margin:auto; display: block; text-align: center;">Fig.5 - Moving Average Convergence Divergence (MACD)</figcaption>
+			</figure>
+			<br><br>
+			<figure class = "centre-caption">
+				<img  src="{% static 'main/img/website_images/financial_GUI_package_2/RSI_plot.png' %}" style="width:70%; display: block; margin:auto;">
+				<figcaption style="width:100%; margin:auto; display: block; text-align: center;">Fig.6 - Relative Strength Index (RSI)</figcaption>
+			</figure>
+			<br><br>
+			<h3>Portfolio Tracker</h3>
+			The portfolio tracker page enables users to append stocks to a portfolio, which are saved. These stocks can be analysed individually in a similar way as the stock screener. Analysis can be performed on features, trends and industry comparison.
+			<br><br>
+			<figure class = "centre-caption">
+				<img  src="{% static 'main/img/website_images/financial_GUI_package_2/portfolio_tracker.png' %}" style="width:70%; display: block; margin:auto;">
+				<figcaption style="width:100%; margin:auto; display: block; text-align: center;">Fig.7 - Portfolio page</figcaption>
+			</figure>
+			<br><br>
+			<h3>Algorithmic Screener</h3>
+			The algorithmic screener performs the same function as the stock screener, however in this instance the conditions are already pre-defined. This has not been developed fully, and the only option available currently returns the top ten stocks based upon a cumulative ranked system for features. Again, these stocks can be analysed on the right. For further development I would hope to add additional screener options to provide greater depth in analysis for users.
+			<br><br>
+			<figure class = "centre-caption">
+				<img  src="{% static 'main/img/website_images/financial_GUI_package_2/top_stocks.png' %}" style="width:70%; display: block; margin:auto;">
+				<figcaption style="width:100%; margin:auto; display: block; text-align: center;">Fig.8 - Algorithmic screener page</figcaption>
+			</figure>
+			<br><br>
+			<h3>Simulating Stocks</h3>
+			The simulation tab allows users to model the performance of potential investments, given the data stored in the database. It allows the user to select a stock and input an amount that they would like to invest. The software stores this data, and tracks changes daily based upon adjusted closing stock prices. The day-by-day history of investments can be seen on the right, along side plots that visualise the change in price of the stock. The overall analysis of all companies invested in can be seen at the bottom left, with features displayed such as profit and yield on investment.
+			<br><br>
+			<figure class = "centre-caption">
+				<img  src="{% static 'main/img/website_images/financial_GUI_package_2/simulation_table.png' %}" style="width:70%; display: block; margin:auto;">
+				<figcaption style="width:100%; margin:auto; display: block; text-align: center;">Fig.9 - Simulating stocks page</figcaption>
+			</figure>
+			<br><br>
+			<figure class = "centre-caption">
+				<img  src="{% static 'main/img/website_images/financial_GUI_package_2/simulation_plot.png' %}" style="width:70%; display: block; margin:auto;">
+				<figcaption style="width:100%; margin:auto; display: block; text-align: center;">Fig.10 - Tracking investments in stocks</figcaption>
+			</figure>
+			<br><br>
+			
+			
+		</div>
+       
+    </article>
+	
+	<a href="{% static 'main/sample_code/financial_GUI.zip' %}" class="btn btn-primary btn-lg" style="top: 50%;left: 40%;">Download Code</a>
+
+</div>
+<!-- Content / End -->
+
+<!-- Mobile Nav Toggle -->
+<a href="#" id="vertical-nav-toggle" class="nav-toggle" data-toggle="mobile-nav"><span><span></span></span></a>
+
+{% include "main/includes/chatbot.html" %}
+
+<!-- Ajax Modal -->
+<div id="ajax-modal"></div>
+<!-- Ajax Close -->
+<a href="#" class="ajax-close" data-dismiss="ajax-modal"><i class="ti-close"></i></a>
+<!-- Ajax Loader -->
+<svg id="ajax-loader" class="loader" width="32px" height="32px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg"><circle class="circle" fill="none" stroke-width="5" stroke-linecap="round" cx="32" cy="32" r="32"></circle></svg>
+
+<!-- JS Libraries -->
+<script src="{% static 'main/js/jquery-1.12.4.min.js' %}"></script>
+
+<!-- JS Plugins -->
+<script src="{% static 'main/js/plugins.js' %}"></script>
+
+<!-- JS Core -->
+<script src="{% static 'main/js/core.js' %}"></script>
+
+<!-- JS Google Map -->
+<script src="http://maps.google.com/maps/api/js"></script>
+
+</body>
+
+</html>

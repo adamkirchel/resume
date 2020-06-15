@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+{% load static %}
+
+<!-- Meta -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<!-- Title -->
+<title>Website Chatbot</title>
+
+<!-- Favicons -->
+<link rel="shortcut icon" href="assets/img/favicon.png">
+<link rel="apple-touch-icon" href="assets/img/favicon_60x60.png">
+<link rel="apple-touch-icon" sizes="76x76" href="assets/img/favicon_76x76.png">
+<link rel="apple-touch-icon" sizes="120x120" href="assets/img/favicon_120x120.png">
+<link rel="apple-touch-icon" sizes="152x152" href="assets/img/favicon_152x152.png">
+
+<!-- Google Web Fonts -->
+<link href="https://fonts.googleapis.com/css?family=Lora:400,400i%7CPoppins:300,400,500,600" rel="stylesheet">
+
+<!-- CSS Styles -->
+<link rel="stylesheet" href= "{% static 'main/css/styles.css' %}" />
+
+<!-- CSS Theme -->
+<link id="theme" rel="stylesheet" href="{% static 'main/css/themes/theme-serif-red.css' %}" />
+
+</head>
+
+<body>
+
+<!-- Loader -->
+<div id="page-loader">
+    <svg class="loader" width="32px" height="32px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg"><circle class="circle" fill="none" stroke-width="5" stroke-linecap="round" cx="32" cy="32" r="32"></circle></svg>
+</div>
+<!-- Loader / End -->
+
+<!-- Header -->
+<header id="header" class="header-vertical collapsed dark">
+
+    <!-- Photo -->
+    <a href="kirchel_adam_portfolio.html" class="photo">
+        <img src="" alt="">
+    </a>
+
+    <!-- Navigation -->
+    <nav id="main-menu">
+        <ul class="nav nav-vertical">
+            <li><a href="/#start"><i class="pe-7s-home"></i><span>Start</span></a></li>
+            <li><a href="/#resume"><i class="pe-7s-ribbon"></i><span>Resume</span></a></li>
+            <li><a href="/#portfolio"><i class="pe-7s-monitor"></i><span>Portfolio</span></a></li>
+            <li><a href="/#contact"><i class="pe-7s-mail"></i><span>Contact</span></a></li>
+        </ul>
+        <span class="selector"></span>
+    </nav>
+
+    <!-- Header Toggle -->
+    <a href="#" id="header-toggle" class="nav-toggle"><span><span></span></span></a>
+
+</header>
+<!-- Header / End -->
+
+<!-- Content -->
+<div id="content" class="bg-light">
+
+    <!-- Post / Item -->
+    <article class="post single">
+        <nav class="post-nav">
+            <ul class="nav-icons">
+                <li><a href="/graphical_analysis_application/"><i class="ti-angle-left"></i></a></li>
+                <li><a href="/">Back to list</a></li>
+                <li><a href="/thermal_analysis_simulation/"><i class="ti-angle-right"></i></a></li>
+            </ul>
+        </nav>
+        <div class="post-image"><img src={% static 'main/img/website_images/tennis.jpeg' %} alt=""></div>
+        <div class="post-content">
+            <ul class="post-meta">
+                <li>29 March, 2020</li>
+            </ul>
+            <h1><a href="#">Numerical Modelling of a Badminton-playing Robot</a></h1>
+            <p class = "lead">In this task the flight of a shuttlecock was analysed and modelled using MATLAB, so that an initial angle of trajectory $\theta$ could be calculated given a target point of impact. This was achieved through the derivation of decoupled first-order ODEs in the x and y axis after modelling the shuttlecock as a point mass. Software was then developed in MATLAB that could compute the solution of the initial value problem using the Runge-Kutta method, and these solutions were used to solve the boundary-value problem using the shooting method. This was graphically implemented so data could be analysed easily. It was found that an angle of 37.5\degree was needed to have a point of impact of 2.1m beyond the net given the specified initial values, however this value is based upon several assumptions. These assumptions include the simplistic model of the shuttlecock that does not consider its weight distribution and the consequent axial and rotational torques during flight, which would affect the drag. The aerodynamic was improved upon through the analysis of the flipping angle $\phi$ that affects the cross-sectional area $A$ resposible for drag. Several improvements were made to the model including the implementation of the flight in a 3D environment and a GUI to make the software more user-friendly.<br><br>
+
+			<h3>Introduction</h3>
+
+			The current robot under development is based upon the $Robomintoner$ research prototype developed at the University of Electronic Science and Technology of China. The $Robomintoner$ uses its unique navigation system, alongside cameras and motion sensors, to detect the flight of the shuttlecock \cite{popularmechanics}. This robot displays a level of sophistication in artificial intelligence (AI) that is lacking in the robot that is currently under development. This project focuses upon the numerical model for predicting the shuttlecock trajectory, allowing the robot to effectively predict the flight of incoming and outgoing shots \cite{lecturenotes}. The initial problem involved finding the trajectory of the shuttlecock given an initial point of $x_0$ = -2.1 m and $y_0$ = 1 m and an impact distance of $x_0$ = 2.1 m.<br><br>
+
+			<h3>Method</h3>
+
+			The shuttlecock can be modelled initially using a free-body diagram (Figure 1), with drag and weight being the only forces acting upon the object.
+
+			<figure class = "centre-caption">
+				<img  src="Free-body diagram shuttlecock.png" style="width:50%; display: block; margin:auto;">
+				<figcaption style="width:100%; margin:auto; display: block; text-align: center;">Fig.1 - Free-body diagram of shuttlecock in 2D space</figcaption>
+			</figure>
+			
+			<br><br>
+			The drag acting on the shuttlecock can be calculated using the following equation \cite{NASA}
+
+			\begin{equation}
+			D = \frac{C_d \rho A {V^2}}{2}
+			\end{equation}
+
+			where $D$ is the drag (N), $C_d$ is the coefficient of drag, $\rho$ is the density of air ($Kg/{m^3}$), $A$ is the cross-sectional area ($m^2$) and $V$ is the velocity of the shuttlecock ($m/s$).\\
+
+			The angle of trajectory $\theta$ can vary. This results in the following equations displaying the resolution of forces in the x and y direction
+
+			\begin{equation}
+			M \ddot{x} = - Dcos(\theta)
+			\end{equation}
+
+			\begin{equation}
+			M \ddot{y} = - Mg - Dsin(\theta)
+			\end{equation}
+
+			where $\ddot{x}$ is the acceleration in the x direction ($m/s^2$), $\ddot{y}$ is the acceleration in the y direction ($m/s^2$) and g is the acceleration due to gravity ($m/s^2$).\\
+
+			These second-order ordinary differential equations (ODEs) can each be decoupled into two first-order ODEs, shown in the following equations
+
+			\begin{equation}
+			{x_1}' = x_2
+			\end{equation}
+
+			\begin{equation}
+			{x_2}' = - (\frac{C_d P ({x_2}^2 + {y_2}^2) A}{2M})cos(d)
+			\end{equation}
+
+			\begin{equation}
+			{y_1}' = y_2
+			\end{equation}
+
+			\begin{equation}
+			{y_2}' = -g - (\frac{C_d P ({x_2}^2 + {y_2}^2) A}{2M})sin(d)
+			\end{equation}
+
+			<br>
+			From these ODEs, a state-derivative $dz$ can be found. The subsequent values of the vector $z$ can be approximated using the Runge-Kutta method. These values can be applied to solve the initial value problem (IVP), which computes the entire flight of the shuttlecock. Finally, the shooting method can be applied to the boundary value problem (BVP) to approximate the initial angle of trajectory. The code implemented is displayed in Appendix A.1. The final values of the vector $z$ can then be implemented in a plotting function that plots the flight of the shuttlecock (Appendix A.6). <br><br>
+
+			<h3>Results</h3>
+
+			Figure 2 displays the flight of the shuttlecock with initial values of y = 1 m, x = -2.1 m, V = 75 m/s and the target x = -2.1 m. The region of unstable flight is represented in red and stable flight in blue. The point of impact is represented by an asterix. The code to calculate the difference in drag between the shuttlecock in stable and unstable flight is shown in Appendix A.7.
+
+			<br><br>
+
+			<figure class = "centre-caption">
+				<img  src="Shuttlecock 2D inital parameters.png" style="width:70%; display: block; margin:auto;">
+				<figcaption style="width:100%; margin:auto; display: block; text-align: center;">Fig.2 - Modelled 2D flight of shuttlecock with initial parameters x = -2.1 m and y = 1 m </figcaption>
+			</figure>
+
+			<br>
+
+			The shuttlecock in this instance needed an initial angle of 37.5\degree and the velocity at impact was 3.79 m/s.<br><br>
+
+			<h3>Discussion</h3>
+			<h4>Simplifying assumptions</h4>
+
+			This is a very basic model of a shuttlecock as it doesn't take into account the more complicated theory based on the mechanics of flight. In reality the shuttlecock flips in the air during the unstable period of flight, and the model takes this into account by averaging the variation in area, rather than modelling this behaviour exactly. Furthermore, the time of stabilisation is assumed to be a finite value of 50 ms, which is an approximation for the velocity 75 m/s. However, for different velocities this time will vary and is an inaccuracy in the model. The understanding of the more complex behaviour involving the flipping of the shuttlecock would involve the analysis of the weight distribution. In the model, the shuttlecock was assumed to be a point mass with a fixed mass of 5 g, whereas in reality the mass is concentrated in the cork \cite{badmintonphysics}. This would result in applied torque to the shuttlecock that is not accounted for. As well as axial torque, there is rotational torque which would result in the flight of the shuttlecock varying to what was modelled. The flight mechanics of the shuttlecock would also depend on the fluid properties of the air. The properties of air change based upon variables such as temperature and humidity, which are not accounted for in the model. Finally, alternate conditions are not considered such as the effect of the wind when playing outside.<br><br>
+
+			<h4>Numerical methods</h4>
+			The fourth Runge-Kutta method was used instead of the Euler method to numerically compute the next value for the vector $z$. This is because the Runge-Kutta method has a smaller error for the time period $dt$ specified, as the rate of convergence for this method is more rapid than for the Euler method \cite{runge}. The fourth-order method is used in this case as methods of a higher order would take significantly longer to compute the same initial values.<br><br>
+
+			<h3>Extension tasks - Improving the model</h3>
+
+			<h4>Graphical implementation in 3D</h4>
+			Modelling the shuttlecock in 3D would give a more realistic representation of the flight and would allow for more permutations to be modelled. For the trajectory to be plotted in 3D, the ODEs would have to be altered as well as the process for the shooting method. The derivation of these ODEs is shown in Appendix B. Similar to the 2D case, from these ODEs the state derivative function $dz$ can be found and used to compute the flight of the shuttlecock to solve an IVP. The solution of the BVP involved an adjustment to the shooting method due to the output of this function involving two variables - the initial angles $\theta_{y0}$ and $\theta_{z0}$. $\theta_{y0}$ could be calculated immediately using trigonometry with the target values of $x$ and $z$. This meant $\theta_z$ could be calculated using the shooting method as it can be now treated as a 2D problem with $\theta_y$ found. The code implemented to find the initial angles can be found in Appendix A.2. Figure 3 displays the flight of the shuttlecock in 3D with initial values of y = 1 m, x = -2.1 m, z = 0 m, V = 75 m/s and the targets x = -2.1 m and z = 0 m. The region of unstable flight is represented in red and stable flight in green. The point of impact is represented by an asterix.<br><br>
+
+			<figure class = "centre-caption">
+				<img  src=" Shuttlecock 3D.png" style="width:70%; display: block; margin:auto;">
+				<figcaption style="width:100%; margin:auto; display: block; text-align: center;">Fig.3 - Modelled 2D flight of shuttlecock with initial parameters x = -2.1 m, y = 1 m and z = 0 m </figcaption>
+			</figure>
+
+			<br><br>
+			<h4>Improving the aerodynamic model</h4>
+
+			The aerodynamic model assumes fundamental properties of the stability of the shuttlecock. Therefore, a more analytical approach to solving this problem would improve the accuracy of the model. To improve upon the model of the shuttlecock the flipping angle $\phi$ was considered. The second-order differential equation in Appendix D was used to compute the next value of $\phi$, where the shuttlecock was modelled as two spheres \cite{badmintonphysics}. The differential equation was decoupled into two first-order differential equations. This was implemented in code (Appendix A.3) similar to the calculation of the vector $z$, using the Runge-Kutta method to solve the IVP in 2D. However, the initial angular velocity $\dot{\phi_0}$ was needed to plot the change of $\phi$. This cannot be found without knowing the angle of impact of the shuttlecock at the initial point. Therefore, this made the problem more complex, leaving the code developed suitable for only solving the initial problem at a basic level and was not be implemented in the general code.<br><br>
+
+			<h4>Generalisation of code to provide user inputs</h4>
+
+			The ability to input values would allow the possibility for more permutations to be computed, with the process also becoming more efficient. To implement this, the code was generalised in both the 2D and 3D case, so that the initial dimensions, the target dimensions and the initial velocity could be input by the user. This was implemented with the code displayed in Appendix A.4, where an input function was used so these parameters could be entered manually to give the initial angles.<br><br>
+
+			<h4>Implementation of a GUI</h4>
+
+			A Graphical User Interface (GUI) was created so that the 2D and 3D versions of the graphs could be accessed on one user-friendly platform. It was also used so that the characteristics of the flight of the shuttlecock could obtained easily, such as the impact velocity. This involved creating a separate GUI function that related the interactive items in the GUI using handles, displayed in Appendix A.5. The GUI was able to display the impact speed of the shuttlecock and if the shuttlecock had successfully made it over the net, shown in Appendix C.<br><br>
+
+			<h4>Animating the shuttlecock trajectory</h4>
+
+			The shuttlecock experiences a transition between stable and unstable flight during the course of its flight. Therefore, it is necessary for the graph to notify the user where and when this transition point is. The flight of the shuttlecock was animated using the animatedline command, which was then adjusted to display the trajectory of the shuttlecock in real-time (Appendix A.6). This line was coloured differently dependant on whether it was experiencing unstable or stable flight (Appendix A.7).<br><br>
+
+			<h3>Conclusion</h3>
+
+			The task was carried out successfully with the trajectory of the shuttlecock able to be approximated in a 2D environment given initial and target parameters. The end velocity was calculated to be 3.79 m/s with the angle of trajectory being 37.5\degree given the initial parameters stated in the task specification. However, these figures are subject to error due to several assumptions when modelling the shuttlecock. These include the shuttlecock being modelled as a point mass, as well as the assumption that the period of instability always lasts for 50ms, when this is only true for the initial constraints posed in the problem. This was improved by modelling the shuttlecock in 3D, which would allow for more flight permutations to be tested. Furthermore, the output data from the software was made to be more accessible by incorporating a GUI, which could output the impact velocity. The aerodynamics of the model were investigated by attempting to model the flipping angle $\phi$. Even though the attempt was unsuccessful due to the problem being more complex than initially thought, the basic principles of the code highlighted the inaccuracies of the current model.</p>
+		</div>
+        
+    </article>
+
+</div>
+<!-- Content / End -->
+
+<!-- Mobile Nav Toggle -->
+<a href="#" id="vertical-nav-toggle" class="nav-toggle" data-toggle="mobile-nav"><span><span></span></span></a>
+
+<!-- Contact Popup Controls -->
+<div class="contact-popup-ctrl">
+    <a href="#" class="contact-popup-toggle" data-toggle="contact-popup"><span class="typing" data-text='["Have a question?","Write to me!"]'>Write to me!</span></a>
+    <a href="#" class="contact-popup-close" data-toggle="contact-popup"><i class="ti-close"></i></a>
+</div>
+
+
+<!-- Ajax Modal -->
+<div id="ajax-modal"></div>
+<!-- Ajax Close -->
+<a href="#" class="ajax-close" data-dismiss="ajax-modal"><i class="ti-close"></i></a>
+<!-- Ajax Loader -->
+<svg id="ajax-loader" class="loader" width="32px" height="32px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg"><circle class="circle" fill="none" stroke-width="5" stroke-linecap="round" cx="32" cy="32" r="32"></circle></svg>
+
+<!-- JS Libraries -->
+<script src="{% static 'main/js/jquery-1.12.4.min.js' %}"></script>
+
+<!-- JS Plugins -->
+<script src="{% static 'main/js/plugins.js' %}"></script>
+
+<!-- JS Core -->
+<script src="{% static 'main/js/core.js' %}"></script>
+
+<!-- JS Google Map -->
+<script src="http://maps.google.com/maps/api/js"></script>
+
+</body>
+
+</html>
+

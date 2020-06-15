@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+{% load static %}
+
+<!-- Meta -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<!-- Title -->
+<title>Simulation of the Heating of Ceramic Tiles as a Spacecraft Enters the Earth's Atmosphere</title>
+
+<!-- Favicons -->
+<link rel="shortcut icon" href="assets/img/favicon.png">
+<link rel="apple-touch-icon" href="assets/img/favicon_60x60.png">
+<link rel="apple-touch-icon" sizes="76x76" href="assets/img/favicon_76x76.png">
+<link rel="apple-touch-icon" sizes="120x120" href="assets/img/favicon_120x120.png">
+<link rel="apple-touch-icon" sizes="152x152" href="assets/img/favicon_152x152.png">
+
+<!-- Google Web Fonts -->
+<link href="https://fonts.googleapis.com/css?family=Lora:400,400i%7CPoppins:300,400,500,600" rel="stylesheet">
+
+<!-- CSS Styles -->
+<link rel="stylesheet" href= "{% static 'main/css/styles.css' %}" />
+
+<!-- CSS Theme -->
+<link id="theme" rel="stylesheet" href="{% static 'main/css/themes/theme-serif-red.css' %}" />
+
+</head>
+
+<body>
+
+<!-- Loader -->
+<div id="page-loader">
+    <svg class="loader" width="32px" height="32px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg"><circle class="circle" fill="none" stroke-width="5" stroke-linecap="round" cx="32" cy="32" r="32"></circle></svg>
+</div>
+<!-- Loader / End -->
+
+<!-- Header -->
+<header id="header" class="header-vertical collapsed dark">
+
+    <!-- Photo -->
+    <a href="kirchel_adam_portfolio.html" class="photo">
+        <img src="assets/img/photos/accountant_avatar.jpg" alt="">
+    </a>
+
+    <!-- Navigation -->
+    <nav id="nav-menu">
+        <ul class="nav nav-vertical">
+            <li><a href="/#start"><span>Start</span></a></li>
+            <li><a href="/#resume"><span>Resume</span></a></li>
+            <li><a href="/#portfolio"><span>Portfolio</span></a></li>
+            <li><a href="/#contact"><span>Contact</span></a></li>
+        </ul>
+        <span class="selector"></span>
+    </nav>
+
+    <!-- Header Toggle -->
+    <a href="#" id="header-toggle" class="nav-toggle"><span><span></span></span></a>
+
+</header>
+<!-- Header / End -->
+
+<!-- Content -->
+<div id="content" class="bg-light">
+
+    <!-- Post / Item -->
+    <article class="post single">
+        <nav class="post-nav">
+            <ul class="nav-icons">
+                <li><a href="/tennis_serve_simulator/"><img style="width:20px;" src="{% static 'main/img/website_images/left.svg' %}"></a></li>
+                <li><a href="/">Back to list</a></li>
+                <li><a href="/financial_website_application/"><img style="width:20px;" src="{% static 'main/img/website_images/right.svg' %}"></a></li>
+            </ul>
+        </nav>
+        <div class="post-image"><img src={% static 'main/img/website_images/spaceship.jpg' %} alt=""></div>
+        <div class="post-content">
+            <ul class="post-meta">
+                <li>29 March, 2020</li>
+            </ul>
+            <h1><a href="#">Simulation of the Heating of Ceramic Tiles as a Spacecraft Enters the Earth's Atmosphere</a></h1>
+            <p class= "lead"> This project set out to model the temperature variation through the thickness of a spacecraft heat shield tile, and to provide an accurate value of the ideal thickness. The accuracy and stability of this result was assured by selecting a suitable method by analysing the effect of changing the time step &#916 t and special step &#916 x. The Crank-Nicolson method was selected, and &#916 t and &#916 x were selected as 29 s and 0.0035 m respectively. The model can analyse several different areas of the model using a GUI. This included a 2D model that can simulate a crack through the thickness of the tile so that the effect of damage on the temperature distribution of the inner surface of the tile can be analysed. The model can automatically scan the images sourced from NASA of outer boundary temperature, meaning that it can read any image supplied providing it is formatted similarly. The optimal thickness to prevent damage to the inner surface was calculated to be 0.549 m for tile 597 using the shooting method. However, this value has an error associated with the assumptions made in the model. The most significant of these being the Neumann boundary condition. This could be improved by implementing a Robin boundary on the inner and outer surfaces so it models the transfer of heat more accurately.</p><br>
+			<p>
+
+			<h3>Introduction</h3>
+
+			The Columbia space shuttle disaster on February 1 2003 was caused by damage to the outer tiles. A large piece of insulating foam broke away from the craft and struck the leading edge of the wing \cite{columbia}. The black ceramic tiles located in this region of the aircraft experience up to 1650 &#176 C \cite{3000}, which meant the damage caused temperature levels on the inner surface to rise to fatal levels. At these temperatures the aluminium lost all strength, and hot gases were able to penetrate the wing as shown in Figure 1 \cite{space}. According to the report conducted by the Columbia Accident Investigation Board (CAIB) NASA made ‘wrong assumptions in modelling the impact (that predicted the depth to which the foam debris would penetrate a Thermal Protection System tile), ultimately led seven astronauts to pay with their lives’ \cite{NASA}.<br><br>
+
+			<figure class = "centre-caption">
+				<img  src="{% static 'main/img/website_images/spaceship_thermal_analysis/Columbia.png' %}" style="width:50%; display: block; margin:auto;">
+				<figcaption style="width:100%; margin:auto; display: block; text-align: center;">Fig. 1 - Model of air flow through the shuttle after collision \cite{columbia} </figcaption>
+			</figure>
+
+			<br>
+
+			Learning from this disaster, the potential for damage to occur on the next-generation reusable spacecraft can be minimised by conducting research into the modelling of the heat experienced by the tiles during re-entry. This report investigates the various methods that could be used to compute this model and their respective limitations. The model generated will examine the heat experienced by the inner surface of tiles using measured data collected on previous NASA spacecraft. From this model, a suitable thickness can be found that will prevent the occurrence of another accident like the Columbia space shuttle disaster.
+			<br><br>
+			<h3>Results and discussion</h3>
+
+			<h4>Initial observations of the physical problem</h4>
+
+			Figure 2 displays the variation of temperature through the thickness of the tile as a function of time, with an initial thickness of 0.05 m. The temperature values for the upper boundary are given by the data collected by NASA, and the model is governed by Fourier's equation. As temperature increases at the outer surface boundary, the temperature within the tile also increases. However, there is a lag of 1750 s between the recorded time for the maximum external temperature and the maximum temperature on the inner surface. This is a result of Fourier's heat equation, which states that rate of change of temperature across an object depends upon the thickness of that object.<br>
+
+			<figure class = "centre-caption">
+				<img  src="{% static 'main/img/website_images/spaceship_thermal_analysis/overalltempprofile.png' %}" style="width:70%; display: block; margin:auto;">
+				<figcaption style="width:100%; margin:auto; display: block; text-align: center;">Fig. 2 - Temperature profile of tile 597 with tmax = 4000s and a thickness of 0.05 m, computed using the Crank-Nicolson method </figcaption>
+			</figure>
+			<br>
+
+			After the peak inner surface temperature is reached at 230 $^{\circ}$C, the temperature linearly decreases, until it reaches a final temperature of 170 $^{\circ}$C at 4000s (Figure 3). The maximum temperature achieved is 230 $^{\circ}$C, which is not ideal and therefore the thickness should be changed to guarantee a safe inner surface temperature.
+
+			<figure class = "centre-caption">
+				<img  src="{% static 'main/img/website_images/spaceship_thermal_analysis/innersurface.png' %}" style="width:70%; display: block; margin:auto;">
+				<figcaption style="width:100%; margin:auto; display: block; text-align: center;">Fig. 3 - Inner surface temperature of the 597 tile against time for a thickness of 0.05 m </figcaption>
+			</figure>
+			<br><br>
+
+			<h4>Analysis of stability</h4>
+
+			Figure 4 displays the plots of the end values of temperature against time for the four numerical methods used to solve the PDE. The Forward differencing method is shown to be stable at small time steps, however at a time step beyond 10 s it becomes unstable and tends towards infinity because it is an explicit method. This is elaborated more in Appendix A.1. In Figure 5 it is shown to be unstable when varying $\delta x$, as the plot tends to infinity at $\delta x$ $<$ 0.0018 m.<br>
+
+
+			<figure class = "centre-caption">
+				<img  src="{% static 'main/img/website_images/spaceship_thermal_analysis/Small stability.png' %}" style="width:70%; display: block; margin:auto;">
+				<figcaption style="width:100%; margin:auto; display: block; text-align: center;">Fig. 4 - Analysing the effect of the time-step on the stability and accuracy of different numerical methods </figcaption>
+			</figure>
+			<br>
+
+			The Dufort-Frankel method is unconditionally stable despite being an explicit method. This is confirmed in Figure 4 as the plot does not tend to infinity at a specific time-step, despite its oscillatory behaviour. 
+
+			<br><br>
+
+			The Backwards differencing and Crank-Nicolson methods are inherently stable as they are implicit methods. This is shown in Figure 3 and Figure 4 where both plots do not display the solution for any time step tending to infinity.<br><br>
+
+
+			<h4>Analysis of accuracy</h4>
+
+			In Figure 3, all the methods are shown to be converging to the true value of the end temperature, which is approximately 175 $^{\circ}C$. The accuracy of the method is defined as the amount the calculated solution differs from the true solution. Figure 3 shows all the methods to lose accuracy by differing amounts as the time step increases. 
+
+			<br><br>
+
+			Observing Figure 4, the Forward differencing method has an accuracy similar to the Backward differencing method, as both plots differ equally from the true value of the end temperature. This is because both methods have a truncation error of $O(\delta t)$.
+
+			<figure class = "centre-caption">
+				<img  src="{% static 'main/img/website_images/spaceship_thermal_analysis/xstability.png' %}" style="width:70%; display: block; margin:auto;">
+				<figcaption style="width:100%; margin:auto; display: block; text-align: center;">Fig. 5 - Analysing the effect of the spatial-step on the stability and accuracy of different numerical methods </figcaption>
+			</figure>
+			<br><br>
+			The accuracy of the Dufort-Frankel method is similar to the Backward differencing method at small time steps, as Figure 4 shows the two plots differing by the same amounts from the true value for the end temperature. However, it does suffer from oscillatory behaviour at large time steps due to the error $O({\frac{\delta t}{\delta x}}^2)$, which produces the jagged profile of the results. The results in the Dufort-Frankel method becoming less accurate than the Backwards differencing method at large $\delta t$. More information is given in Appendix A.1.
+
+			<br><br>
+
+			The Crank-Nicolson method gives the most accurate solution, with an error of $O(\delta t ^2)$. This is shown in Figure 4, as the plot differs the least from the true solution of the end temperature.
+
+			<br><br>
+
+
+			Similar to Figure 4, Figure 5 can be used to analyse the accuracy of the different numerical methods in terms of the spacial step $\delta x$. The plots in this figure all are tending towards 175.3, which agrees with the result in Figure 4. All four methods display the same accuracy at large $\delta x$. This is because when deriving the spacial element of each method, the truncation error is always $O(\delta x ^2)$. This agrees with the pattern in Figure 4, which shows each plot following a parabolic shape. However, at small $\delta x$ the Dufort-Frankel method becomes increasingly more oscillatory, as shown in Figure 5 where the plot exponentially increases for small $\delta x$.
+			<br><br>
+
+
+			<h4>Selection of method and parameters</h4>
+
+			The Crank-Nicolson method was selected to solve the PDE because it has the smallest error in the time domain ($O(\delta t ^2)$) compared to the other three methods, which all have an error $O(\delta t)$. Not only is it the most accurate method, it is also inherently stable as it is an implicit method, unlike the Forward differencing method. 
+
+			<br><br>
+
+			The value for $dt$ was selected to be 29 s as this allowed for a margin of error of 0.1\% whilst still being computationally efficient. This is shown in Figure 4 where the Crank-Nicolson plot first exceeds the margins of error at $dt$ = 29 s.
+
+			<br><br>
+
+			When selecting the spatial step $dx$ the accuracy of the method and calculation both have to be considered. If a smaller $dx$ is chosen, the accuracy of the method is higher as the error is given by $O(\delta x ^2)$. However, a value for $dx$ that is too small results in a fine grid that requires long computation times. In this instance, 0.0035 m was chosen as this is the value at which the Crank-Nicolson approximation exceeds the boundaries shown in Figure 6. It also has a suitably fast computation time.
+
+			<br><br>
+
+			The thickness of the plate has to be varied from the default value of 0.05 m so a suitable value for the inner surface temperature can be found. This was achieved using the shooting method, which takes guesses of the final values for the thickness to achieve a required inner surface temperature. The limiting factor is the temperature at which the aluminium located on the inner surface of the tile starts to lose strength. Aluminium 5083-H116 alloy has a close resemblance to the alloy used on the Columbia spacecraft, and it suffers a significant decrease in yield strength between 200 and 300 $^{\circ}C$ from 250 to 90 MPa \cite{aluminium}. Therefore, the maximum temperature experienced by the this inner surface of the tile can not exceed 200 $^{\circ}C$. The ideal thickness was found to be 0.0549 m for tile 597 using the shooting method. The thickness's of the other tile can be evaluated easily with help of the GUI.<br><br>
+
+
+
+			<h3>Limitations and improvements of the model</h3>
+
+			<h4>Boundary and initial conditions</h4>
+
+			An initial temperature of 16 $^{\circ}C$ is assumed throughout the tile thickness, which is not representative of what the tile would be experiencing when initially entering the atmosphere. Instead, the initial temperature distribution across the thickness of the tile could be recorded and used in the model.
+
+			<br><br>
+
+			The ambient temperature after 2000s is assumed to remain at 16 $^{\circ}C$. However, in reality there will be temperature variations based upon the altitude and the speed of the spacecraft. Therefore, data for the outer-surface temperature distribution needs to be taken for 4000s.
+
+			<br><br>
+
+			The inner and outer boundaries are approximated using the Neumann boundary solution. The inner surface is assumed to be perfectly insulated, however in reality the temperature gradient normal to the boundary is not zero. At the outer boundary there is a radiation boundary between the tile surface and the air surrounding it, which is not considered by the Neumann boundary. A Robin boundary should be implemented for both surfaces, which would give a more accurate model of the transfer of heat.<br><br>
+
+			<h4>Structure and size of the tile</h4>
+
+			The temperature is assumed to uniform across the tile at a particular thickness as time increases. This does not consider the slight variations due to imperfections in the structure of the tile. This can not be improved easily as there is no way of knowing the structure of the tile, however it is possible to model the worse case scenario with fractures forming in the tile.
+
+			<br><br>
+
+			The material may expand slightly when subjected to such high temperatures. Therefore, the thickness of the tile should be updated each time-step based upon the expansion of the tile.
+
+			<br><br>
+
+			The tile is assumed to have specific properties based upon a chosen material. However, the tile material could be evaluated as an additional variable to give an optimal thickness, which could be implemented by having a user defined input of various different materials for the tile. <br><br>
+
+			<h4>Numerical methods and theory</h4>
+
+			The current method deployed to select $dt$ and $dx$ assumes that an accuracy of $\pm$ 0.1\% is ideal. Instead, the ideal time-step should be found by drawing a graph of truncation error against computation time, and assessing where both values are lowest.
+
+			<br><br>
+
+			The Fourier heat equation assumes conduction occurs under steady state conditions, which is not always the case as the tile could be experiencing a transient response. Also, it assumes heat flow is unidirectional, which would only be the case if the material is homogeneous and isotropic \cite{fourier}. <br><br>
+
+			<h4>Validation of results</h4>
+
+			The error associated with the calculation of the thickness of the tile is an accumulation of all the errors discussed above. To verify that this value is accurate a hybrid test could be used. This is where hardware (the tile) is implemented in a simulated loop, with the rest of the space shuttle being simulated \cite{hybrid}. In this test, heat would be applied to the tile according to the data collected by NASA, and a sensor would be used to measure the temperature.<br><br>
+
+			<h3>Extension tasks</h3>
+			<h4>Automatic scanning</h4>
+			<h5>Overview</h5>
+			Instead of manually scanning the data, a more efficient method of extracting the data would be to automatically scan the image. To extract the data the red pixels are isolated and their indices identified. The average of these indices is found, which represents the individual data plots. The axis are found by isolating the black pixels, and implementing a code that identifies black pixels that are next to each other in a straight line. The axis limits are taken from this line, which can be used to scale the data into time and temperature values. This code can be used to read any graph with the data in red and the axis in black. A dialogue box is used so that the user can select the tile on the spacecraft that they want to analyse, and the scanner can process an image of the graph automatically. This is useful as the areas which are more susceptible to damage can be identified.<br><br>
+
+			<h5>Limitations and improvements</h5>
+
+			The scanner deployed is only able to scan the NASA graphs provided, and not data from other sources that have a different format. This can be improved by altering the scanner so it can recognise any format of graph, and convert it to temperature-time vectors in MATLAB.
+
+			<br><br>
+
+			The image scanner assumes that the average value of the red pixel in the image is the actual value for the data point. This introduces a small error, alongside the error introduced by the discrete sizes of the pixels. This could be improved by having tables of data rather than scanning an image. <br><br>
+
+			<h4>Modelling the problem in 2D<h4>
+			<h5>Overview</h5>
+			To explore the problem of damage across the tile, the temperature was modelled in 2D. To do this, the Forward method was adapted to compute the second dimension, which involved implementing the Neumann boundaries again. The Forward method was chosen for simplicity.<br>
+
+			<figure class = "centre-caption">
+				<img  src="{% static 'main/img/website_images/spaceship_thermal_analysis/2Dsnapshot.png' %}" style="width:70%; display: block; margin:auto;">
+				<figcaption style="width:100%; margin:auto; display: block; text-align: center;">Fig. 6 - Fixed shot of temperature distribution across tile in 2D with a simulated crack </figcaption>
+			</figure>
+
+			<br>
+			Using this method, a crack can simulated through the thickness of the tile at random lengths (Figure 7). The temperature distribution through this crack was assumed to be the same as the outer surface, as Neumann boundaries are being used. This model is useful as the tile could encounter damage from collisions with debris, as was the case in the Columbia accident, and the temperature distribution of the inner surface can be analysed.<br><br>
+
+			<h5>Limitations and improvements</h5>
+
+			The 2D modelling system does not allow the user to input data of the severity of the crack or where it occurs. This could be improved by simulating a collision between the tile and debris and modelling the damage cause by this.
+
+			<br><br>
+
+			The 2D model uses the Forward method for solving the PDE, however this is unstable at a time step above 3 s and is less accurate than other available methods. Instead, the Crank-Nicolson method should be implemented to provide a more accurate solution.
+
+			<br><br>
+
+			The temperature distribution through the crack is assumed to be constant as it follows the Neumann boundary approximation where the rate of change of temperature across the boundary is zero. Instead, the temperature could approximated using a linear relationship through the tile.
+
+			<br><br>
+
+			The 2D model does not consider the variation in temperature along the width of the tile (3D model). This would provide further detail of the temperature variation of the inner surface if damage was sustained to the tile.
+			<br><br>
+			<h4>Graphical User Interface (GUI)</h4>
+
+			A GUI was implemented so that analysis of the tile can be carried out efficiently. The GUI also asked for user-defined inputs, such as the time for the simulation to be run for and the time and spacial steps, so that multiple configurations of the model could be analysed. The graphical representation of each model is displayed in the GUI, and can be easily accessed via a drop-down menu. For the values selected, it also gives the optimal thickness of tile to prevent damage to the aluminium on the inner-surface of the tile.
+			<br><br>
+			<h3>Conclusion</h3>
+
+			The final model achieves the aims laid out in the introduction, as it is able to provide an accurate value for the ideal thickness by analysing several features of the tile in detail. It models the temperature distribution across the tile using the NASA data, which it automatically scans providing it is formatted as an image. The Crank-Nicolson method was chosen as the optimal method for solving the PDE after analysing stability graphs for $dt$ and $dx$ against the end temperature. The optimal values for $dt$ and $dx$ were found from assessing the accuracy of the Crank-Nicolson method, with $dt$ = 29 s and $dx$ = 0.0035 m. To guarantee the maintenance of strength of the aluminium the optimal thickness of the tile was found using the shooting method, which was 0.0563 m for a maximum temperature of 200 $^{\circ}$C. The temperature distribution through the tile was assessed in 2D, with a random crack being simulated through the thickness of the tile. This could be used to analyse the temperature variation of the aluminium on the inner surface of the tile. The model was produced based on several assumptions, the most significant being the Neumann boundary condition. This could be improved by implementing a Robin boundary on the inner and outer surfaces so it models the transfer of heat more accurately.</p>
+
+        </div>
+		
+		
+        
+    </article>
+	
+	<a href="{% static 'main/sample_code/Spacecraft_thermal_analysis.zip' %}" class="btn btn-primary btn-lg" style="top: 50%;left: 40%;">Download Code</a>
+
+</div>
+<!-- Content / End -->
+
+<!-- Mobile Nav Toggle -->
+<a href="#" id="vertical-nav-toggle" class="nav-toggle" data-toggle="mobile-nav"><span><span></span></span></a>
+
+{% include "main/includes/chatbot.html" %}
+
+<!-- Ajax Modal -->
+<div id="ajax-modal"></div>
+<!-- Ajax Close -->
+<a href="#" class="ajax-close" data-dismiss="ajax-modal"><i class="ti-close"></i></a>
+<!-- Ajax Loader -->
+<svg id="ajax-loader" class="loader" width="32px" height="32px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg"><circle class="circle" fill="none" stroke-width="5" stroke-linecap="round" cx="32" cy="32" r="32"></circle></svg>
+
+<!-- JS Libraries -->
+<script src="{% static 'main/js/jquery-1.12.4.min.js' %}"></script>
+
+<!-- JS Plugins -->
+<script src="{% static 'main/js/plugins.js' %}"></script>
+
+<!-- JS Core -->
+<script src="{% static 'main/js/core.js' %}"></script>
+
+<!-- JS Google Map -->
+<script src="http://maps.google.com/maps/api/js"></script>
+
+</body>
+
+</html>

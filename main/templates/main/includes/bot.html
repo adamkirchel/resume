@@ -1,0 +1,57 @@
+
+{% load static %}
+
+<!-- Google Web Fonts -->
+<link href="https://fonts.googleapis.com/css?family=Lora:400,400i%7CPoppins:300,400,500,600" rel="stylesheet">
+
+<!-- CSS Styles -->
+<link rel="stylesheet" href= "{% static 'main/css/styles.css' %}" />
+
+<!-- CSS Theme -->
+<link id="theme" rel="stylesheet" href="{% static 'main/css/themes/theme-serif-red.css' %}" />
+
+
+
+
+	<!-- Contact Popup -->
+<div id="bot-popup" class="bot-popup dark">
+    <div class="v-center row">
+        <div class="col-lg-6 col-md-9">
+			<div class="head">
+				<h3>Ask me anything!</h3>
+			</div>
+            <form class="col s12" method = "Post">
+                
+				{% csrf_token %}
+				{{ form.as_p }}
+				
+				<div class="bottom clearfix">
+					<nav class="controls">
+						<button class="btn btn-white" type="submit">Send<i class="i-after ti-arrow-right"></i></button>
+					</nav>
+				</div>
+			</form>
+			<div class="row">
+				<div class="col-md-6">
+					{{ response }}
+				</div>
+			</div>
+        </div>
+    </div>
+</div>
+
+<!-- Ajax Modal -->
+<div id="ajax-modal"></div>
+<!-- Ajax Close -->
+<a href="#" class="ajax-close" data-dismiss="ajax-modal"><i class="ti-close"></i></a>
+<!-- Ajax Loader -->
+<svg id="ajax-loader" class="loader" width="32px" height="32px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg"><circle class="circle" fill="none" stroke-width="5" stroke-linecap="round" cx="32" cy="32" r="32"></circle></svg>
+
+<!-- JS Libraries -->
+<script src="{% static 'main/js/jquery-1.12.4.min.js' %}"></script>
+
+<!-- JS Plugins -->
+<script src="{% static 'main/js/plugins.js' %}"></script>
+
+<!-- JS Core -->
+<script src="{% static 'main/js/core.js' %}"></script>

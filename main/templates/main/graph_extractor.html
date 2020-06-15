@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+{% load static %}
+
+<!-- Meta -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<!-- Title -->
+<title>Graphical Extraction Software Using MATLAB</title>
+
+<!-- Favicons -->
+<link rel="shortcut icon" href="assets/img/favicon.png">
+<link rel="apple-touch-icon" href="assets/img/favicon_60x60.png">
+<link rel="apple-touch-icon" sizes="76x76" href="assets/img/favicon_76x76.png">
+<link rel="apple-touch-icon" sizes="120x120" href="assets/img/favicon_120x120.png">
+<link rel="apple-touch-icon" sizes="152x152" href="assets/img/favicon_152x152.png">
+
+<!-- Google Web Fonts -->
+<link href="https://fonts.googleapis.com/css?family=Lora:400,400i%7CPoppins:300,400,500,600" rel="stylesheet">
+
+<!-- CSS Styles -->
+<link rel="stylesheet" href= "{% static 'main/css/styles.css' %}" />
+
+<!-- CSS Theme -->
+<link id="theme" rel="stylesheet" href="{% static 'main/css/themes/theme-serif-red.css' %}" />
+
+</head>
+
+<body>
+
+<!-- Loader -->
+<div id="page-loader">
+    <svg class="loader" width="32px" height="32px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg"><circle class="circle" fill="none" stroke-width="5" stroke-linecap="round" cx="32" cy="32" r="32"></circle></svg>
+</div>
+<!-- Loader / End -->
+
+<!-- Header -->
+<header id="header" class="header-vertical collapsed dark">
+
+    <!-- Photo -->
+    <a href="kirchel_adam_portfolio.html" class="photo">
+        <img src="" alt="">
+    </a>
+
+    <!-- Navigation -->
+    <nav id="nav-menu">
+        <ul class="nav nav-vertical">
+            <li><a href="/#start"><span>Start</span></a></li>
+            <li><a href="/#resume"><span>Resume</span></a></li>
+            <li><a href="/#portfolio"><span>Portfolio</span></a></li>
+            <li><a href="/#contact"><span>Contact</span></a></li>
+        </ul>
+        <span class="selector"></span>
+    </nav>
+
+    <!-- Header Toggle -->
+    <a href="#" id="header-toggle" class="nav-toggle"><span><span></span></span></a>
+
+</header>
+<!-- Header / End -->
+
+<!-- Content -->
+<div id="content" class="bg-light">
+
+    <!-- Post / Item -->
+    <article class="post single">
+        <nav class="post-nav">
+            <ul class="nav-icons">
+                <li><a href="/dating_app/"><img style="width:20px;" src="{% static 'main/img/website_images/left.svg' %}"></i></a></li>
+                <li><a href="/">Back to list</a></li>
+                <li><a href="/tennis_serve_simulator/"><img style="width:20px;" src="{% static 'main/img/website_images/right.svg' %}"></a></li>
+            </ul>
+        </nav>
+        <div class="post-image"><img src={% static 'main/img/website_images/graph_extractor.jpeg' %} alt=""></div>
+        <div class="post-content">
+            <ul class="post-meta">
+                <li>29 March, 2020</li>
+            </ul>
+            <h1><a href="#">Graphical Extraction Software Using MATLAB</a></h1>
+            <p class="lead">During my University work I frequently encountered plots that were saved as image files. The data from these plots were inaccessible, unlike figures saved in MATLAB or Excel. The data in extracted from these plots would be helpful for analysing experimental data and assessing the accuracy between my own and other’s data.
+			<br><br>
+			I would achieve this by creating an application that could accept an image file, and automatically extract the datasets from it using an unsupervised machine learning algorithm. It would then output the data set as a saved csv file.</p>
+            <p>
+            <h3>Cropping of the image</h3>
+			The datasets would be classified based on colour, and therefore the plots would have to be isolated so that any colours of external features or labels would be disregarded. The image was cropped so that only the area within the axes was considered. In some instances, there are labels within the axes that have the same colour as the data plots. These were cropped as well with the use of two user-defined points to create a rectangle.<br>
+            <br>
+			<h3>Identification of axes</h3>
+			The axes origin were identified by binarizing the image matrix, classifying points as either black or not. The row and column indices for the longest length of consecutive ones was found, which identified origin. The end points of these lengths were found and defined as the end points of the axes. <br>
+            The actual maximum and minimum x and y axes values were defined using a user-interface. Using these values, the axis were scaled and the image matrix was redefined with these values. <br>
+            <br>
+			<h3>Using unsupervised machine learning techniques to separate different data sets</h3>
+			The data set was then separated using the K-Means ++ clustering algorithm. This separated the data into clusters defined by the user. The algorithm uses an iterative process to relocate cluster centres based on the mean value of the nearest datapoints so that they converge towards the cluster centres. The separated datapoints are then displayed on a figure, and the program asks whether the clusters created were expected.<br>
+            <br>
+			<h3>Creating a GUI</h3>
+			This process was incorporated into a GUI so that an image can be selected from the directory. The plots are output onto the GUI for the user to make decisions within the process as specified above. Figure x displays the features of the GUI.<br>
+            </p>
+        </div>
+        
+    </article>
+
+</div>
+<!-- Content / End -->
+
+<!-- Mobile Nav Toggle -->
+<a href="#" id="vertical-nav-toggle" class="nav-toggle" data-toggle="mobile-nav"><span><span></span></span></a>
+
+{% include "main/includes/chatbot.html" %}
+
+<!-- Ajax Modal -->
+<div id="ajax-modal"></div>
+<!-- Ajax Close -->
+<a href="#" class="ajax-close" data-dismiss="ajax-modal"><i class="ti-close"></i></a>
+<!-- Ajax Loader -->
+<svg id="ajax-loader" class="loader" width="32px" height="32px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg"><circle class="circle" fill="none" stroke-width="5" stroke-linecap="round" cx="32" cy="32" r="32"></circle></svg>
+
+<!-- JS Libraries -->
+<script src="{% static 'main/js/jquery-1.12.4.min.js' %}"></script>
+
+<!-- JS Plugins -->
+<script src="{% static 'main/js/plugins.js' %}"></script>
+
+<!-- JS Core -->
+<script src="{% static 'main/js/core.js' %}"></script>
+
+<!-- JS Google Map -->
+<script src="http://maps.google.com/maps/api/js"></script>
+
+</body>
+
+</html>
+
