@@ -12,7 +12,7 @@ import os
 
 #os.chdir(r'C:\Users\adsk1\Documents\Coding portfolio\resume_website\main\python\chatbot')
 
-with open('intents.json') as file:
+with open('main\python\chatbot\intents.json') as file:
 	data = json.load(file)
 
 if os.path.exists("data.pickle"):
