@@ -9,14 +9,15 @@ import random
 import json
 import pickle
 import os
+from resume_website.settings import CHATBOT_FOLDER
 
 #os.chdir(r'C:\Users\adsk1\Documents\Coding portfolio\resume_website\main\python\chatbot')
 
-with open('main\python\chatbot\intents.json') as file:
+with open(CHATBOT_FOLDER + 'intents.json') as file:
 	data = json.load(file)
 
-if os.path.exists("data.pickle"):
-    with open("data.pickle", "rb") as f:
+if os.path.exists(CHATBOT_FOLDER + "data.pickle"):
+    with open(CHATBOT_FOLDER + "data.pickle", "rb") as f:
         words, labels, training, output = pickle.load(f)
 
 else:
@@ -67,7 +68,7 @@ else:
     training = numpy.array(training)
     output = numpy.array(output)
     
-    with open("data.pickle", "wb") as f:
+    with open(CHATBOT_FOLDER + "data.pickle", "wb") as f:
         pickle.dump((words, labels, training, output), f)
         
 tensorflow.reset_default_graph()
@@ -80,11 +81,11 @@ net = tflearn.regression(net)
 
 model = tflearn.DNN(net)
 
-if os.path.exists("model.tflearn.meta"):
-    model.load("model.tflearn")
+if os.path.exists(CHATBOT_FOLDER + "model.tflearn.meta"):
+    model.load(CHATBOT_FOLDER + "model.tflearn")
 else:
     model.fit(training, output, n_epoch=1000, batch_size=8, show_metric=True)
-    model.save("model.tflearn")
+    model.save(CHATBOT_FOLDER + "model.tflearn")
     
 
 def bag_of_words(s,words):
